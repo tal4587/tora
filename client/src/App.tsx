@@ -1,9 +1,13 @@
+import { Outlet } from 'react-router-dom'
 import './App.css'
 
 function App() {
 
   return (
-    <pre>Under Development!!</pre>
+    <div>
+      Tora
+      <Outlet/>
+    </div>
   )
 }
 
