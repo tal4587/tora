@@ -4,15 +4,8 @@ import Invite from "../models/invite";
 export const getAllInvites = async (req: Request, res: Response, next: NextFunction) => {
     try {
 
-        // Search Functionality
-        let query = {};
-        if(req.query.search) {
-            const keyword = new RegExp(req.query.search.toString(), 'i');
-            query = { $or: [{ email: keyword }, { name: keyword }] };
-        }
-
         const total = await Invite.countDocuments();
-        const invites = await Invite.find(query).populate("reading", "name");
+        const invites = await Invite.find({}).populate("reading", "name");
         const count = invites.length;
 
         res.json({ success: true, invites, total, count });
@@ -23,8 +16,24 @@ export const getAllInvites = async (req: Request, res: Response, next: NextFunct
 
 export const getAllInviteFromReading = async (req: Request, res: Response, next: NextFunction) => {
     try {
+        let query: 
+            { reading: string, status?: string, book?: number, chapter?: number, verse?: number }
+            = { reading: req.params.id };
+        const { status, book, chapter, verse } = req.query;
+        if(status) {
+            if(["read", "reading", "unread"].includes(status.toString())) {
+                query = { ...query, status: status.toString() }
+            } else {
+                return next({ status: 400, message: "Bad Request", detail: "Status is Invalid" })
+            }
+        }
+
+        if(book) query = { ...query, book: Number.parseInt(book.toString())}
+        if(chapter) query = { ...query, chapter: Number.parseInt(chapter.toString())}
+        if(verse) query = { ...query, verse: Number.parseInt(verse.toString())}
+
         const total = await Invite.countDocuments();
-        const invites = await Invite.find({ reading: req.params.id }).populate("reading", "name");
+        const invites = await Invite.find(query).populate("reading", "name");
         const count = invites.length;
         res.json({ success: true, invites, total, count })
     } catch (error) {
