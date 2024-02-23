@@ -1,5 +1,10 @@
+import { useParams } from "react-router-dom"
+
 export const ReadingInviteId = () => {
+
+    const { rid, iid } = useParams();
+
     return (
-        <div>Read</div>
+        <div>{rid}{iid}</div>
     )
 }

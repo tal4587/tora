@@ -18,7 +18,7 @@ const router = createBrowserRouter([
       { path: "/reading/create", element: <ReadingCreate/>},
       { path: "/reading/:id", element: <ReadingId/>},
       { path: "/reading/:id/invite", element: <ReadingInvite/>},
-      { path: "/reading/:id/invite/:id", element: <ReadingInviteId/>},
+      { path: "/reading/:rid/invite/:iid", element: <ReadingInviteId/>},
     ]
   }
 ])

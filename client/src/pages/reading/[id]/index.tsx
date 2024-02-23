@@ -1,11 +1,14 @@
 import "./style.css";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 
 export const ReadingId = () => {
+
+    const {id} = useParams();
+
     return (
         <div>
             Name of Reading
-            <Link to={`/reading/${1}/invite/`}>Create Invite</Link>
+            <Link to={`/reading/${id}/invite/`}>Create Invite</Link>
         </div>
     )
 }

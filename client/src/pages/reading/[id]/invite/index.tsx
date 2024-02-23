@@ -29,7 +29,13 @@ export const ReadingInvite = () => {
             }).catch(console.log)
         }
         fetchBookContent();
-    }, [bookSelected, chapterSelected])
+        setChapterSelected(1);
+        setVerseSelected(0);
+    }, [bookSelected])
+
+    useEffect(() => {
+        setVerseSelected(0);
+    }, [chapterSelected])
 
     return (
         <div>
