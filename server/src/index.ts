@@ -1,4 +1,6 @@
 import express from "express";
+import cors from "cors"
+import "dotenv/config"
 import connectDatabase from "./config/database";
 import readingRoute from "./routes/reading";
 import inviteRoute from "./routes/invite";
@@ -8,6 +10,7 @@ const PORT = process.env.PORT || 8080;
 const app = express();
 
 app.use(express.json());
+app.use(cors({ credentials: true, origin: process.env.CORS_ORIGIN?.split(" ")}))
 
 connectDatabase();
 
