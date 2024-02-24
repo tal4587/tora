@@ -57,11 +57,11 @@ export const ReadingInvite = () => {
                         value={bookSelected}
                         onChange={(e) => setBookSelected(e.target.value)}
                     >
-                        <option value="/json/books/1.Genesis.json">1. Genesis</option>
-                        <option value="/json/books/2.Exodus.json">2. Exodus</option>
-                        <option value="/json/books/3.Leviticus.json">3. Levictus</option>
-                        <option value="/json/books/4.Bamidbar.json">4. Bamidbar</option>
-                        <option value="/json/books/5.Deuteronomy.json">5. Deuteronomy</option>
+                        <option value="/json/books/1.Genesis.json">ספר בראשית</option>
+                        <option value="/json/books/2.Exodus.json">ספר שמות</option>
+                        <option value="/json/books/3.Leviticus.json">ספר ויקרא</option>
+                        <option value="/json/books/4.Bamidbar.json">ספר במדבר</option>
+                        <option value="/json/books/5.Deuteronomy.json">ספר דברים</option>
                     </select>
                 </label>
                 <label>

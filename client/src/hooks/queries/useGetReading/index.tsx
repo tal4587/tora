@@ -1,15 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import axios from "../../../utils/axios";
-
-interface ReadingData {
-    success: boolean,
-    reading: {
-        _id: string,
-        name: string,
-        email: string,
-        createdAt: string
-    }
-}
+import { ReadingData } from "../../../types/reading";
 
 const useGetReading = (reading_id: string) => {
     return useQuery({
