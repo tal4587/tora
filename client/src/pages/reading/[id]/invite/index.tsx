@@ -1,4 +1,8 @@
-import { useEffect, useState } from "react"
+import { FormEvent, useEffect, useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
+import bookNumberToPath from "../../../../constants/books";
+import useCreateNewInvite from "../../../../hooks/mutations/useCreateNewInvite";
+import { InviteBody } from "../../../../types/invite";
 
 interface Verse {
     verseCount: string,
@@ -12,17 +16,24 @@ interface Chapter {
 
 type Book = Chapter[];
 
+
 export const ReadingInvite = () => {
 
+    const {id} = useParams();
+    const navigate = useNavigate();
+
+
     const [verseToggle, setVerseToggle] = useState<boolean>(false);
-    const [bookSelected, setBookSelected] = useState<string>("/json/books/1.Genesis.json");
+    const [bookSelected, setBookSelected] = useState<number>(1);
     const [chapterSelected, setChapterSelected] = useState<number>(1);
     const [verseSelected, setVerseSelected] = useState<number>(0);
     const [bookContent, setBookContent] = useState<Book>([]);
 
+    const { mutate } = useCreateNewInvite(id || "")
+
     useEffect(() => {
         const fetchBookContent = async () => {
-            await fetch(bookSelected).then(async (data) => {
+            await fetch(bookNumberToPath.get(bookSelected) as RequestInfo).then(async (data) => {
                 await data.json()
                     .then(data => setBookContent(data))
                     .catch(console.log);
@@ -37,10 +48,23 @@ export const ReadingInvite = () => {
         setVerseSelected(0);
     }, [chapterSelected])
 
+    const onSubmit = (e: FormEvent) => {
+        e.preventDefault();
+        let body: InviteBody = { readBy: "chapter", book: bookSelected, chapter: chapterSelected };
+        if(verseToggle) {
+            body = { ...body, readBy: "verse", verse: verseSelected }
+        }
+        mutate(body, {
+            onSuccess: (data) => {
+                navigate(`/invite/${data?.data.invite._id}`)
+            }
+        });
+    }
+
     return (
         <div>
             Create Invite
-            <form>
+            <form onSubmit={onSubmit}>
                 <div>
                     <label>
                         Read by chapter
@@ -55,13 +79,13 @@ export const ReadingInvite = () => {
                     Book
                     <select
                         value={bookSelected}
-                        onChange={(e) => setBookSelected(e.target.value)}
+                        onChange={(e) => setBookSelected(Number.parseInt(e.target.value))}
                     >
-                        <option value="/json/books/1.Genesis.json">ספר בראשית</option>
-                        <option value="/json/books/2.Exodus.json">ספר שמות</option>
-                        <option value="/json/books/3.Leviticus.json">ספר ויקרא</option>
-                        <option value="/json/books/4.Bamidbar.json">ספר במדבר</option>
-                        <option value="/json/books/5.Deuteronomy.json">ספר דברים</option>
+                        <option value={1}>ספר בראשית</option>
+                        <option value={2}>ספר שמות</option>
+                        <option value={3}>ספר ויקרא</option>
+                        <option value={4}>ספר במדבר</option>
+                        <option value={5}>ספר דברים</option>
                     </select>
                 </label>
                 <label>
