@@ -3,25 +3,12 @@ import { useNavigate, useParams } from "react-router-dom";
 import bookNumberToPath from "../../../../constants/books";
 import useCreateNewInvite from "../../../../hooks/mutations/useCreateNewInvite";
 import { InviteBody } from "../../../../types/invite";
-
-interface Verse {
-    verseCount: string,
-    verseText: string,
-}
-
-interface Chapter {
-    id: number,
-    verses: Verse[]
-}
-
-type Book = Chapter[];
-
+import { Book } from "../../../../types/book";
 
 export const ReadingInvite = () => {
 
     const {id} = useParams();
     const navigate = useNavigate();
-
 
     const [verseToggle, setVerseToggle] = useState<boolean>(false);
     const [bookSelected, setBookSelected] = useState<number>(1);

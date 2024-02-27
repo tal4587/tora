@@ -2,6 +2,7 @@ import { useParams } from "react-router-dom";
 import useGetInvite from "../../../hooks/queries/useGetInvite";
 import { useEffect, useState } from "react";
 import bookNumberToPath from "../../../constants/books";
+import { Book } from "../../../types/book";
 
 export const ReadingInviteId = () => {
 
@@ -21,7 +22,7 @@ export const ReadingInviteId = () => {
             const fetchBookContent = async () => {
                 await fetch(bookNumberToPath.get(bookData.data.invite.book) as RequestInfo).then(async (data) => {
                     await data.json()
-                        .then(data => {
+                        .then((data: Book) => {
                             if(bookData.data.invite.readBy === "chapter"){
                                 setInviteReading(data[bookData.data.invite.chapter - 1].verses.map((verse: { verseText: string }) => (
                                     <div>{verse.verseText}</div>
