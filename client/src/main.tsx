@@ -10,12 +10,14 @@ import { ReadingCreate } from './pages/reading/create/index.tsx'
 import { ReadingId } from './pages/reading/[id]/index.tsx'
 import { ReadingInvite } from './pages/reading/[id]/invite/index.tsx'
 import { ReadingInviteId } from './pages/invite/[id]/index.tsx'
+import Home from './pages/index.tsx'
 
 const router = createBrowserRouter([
   { 
     path: "/",
     element: <App/>,
     children: [
+      { path: "/", element: <Home/>},
       { path: "/reading", element: <Reading/>},
       { path: "/reading/create", element: <ReadingCreate/>},
       { path: "/reading/:id", element: <ReadingId/>},
