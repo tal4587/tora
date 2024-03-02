@@ -1,0 +1,16 @@
+.image_card_main {
+    background: var(--background-secondary);
+    border-radius: 30px;
+    width: 15em;
+    height: 15em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 20px 4px 54px rgba(0, 5, 137, 0.1);
+}
+
+.image_card_main img {
+    width: 10em;
+    height: 10em;
+}
+

@@ -1,0 +1,22 @@
+.navigation_body {
+    width: 100vw;
+    height: 4em;
+    position: fixed;
+    top: 0;
+    left: 0;
+}
+
+.navigation_wrapper {
+    max-width: 90vw;
+    width: 1080px;
+    height: 100%;
+    margin: 0 auto;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.navigation_logo {
+    font-size: 1.1em;
+}

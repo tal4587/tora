@@ -2,3 +2,29 @@
   margin: 0;
   padding: 0;
 }
+
+:root {
+  --background-primary: #BEE8FF;
+  --foreground-primary: #030AC5;
+  --background-secondary: #E8F6FE;
+  --background-secondary-alpha: #e8f6fecc;
+  --accent-primary: #FFF5CF;
+}
+
+@font-face {
+  font-family: "Open Sans";
+  font-weight: 700;
+  src: url(./assets/fonts/OpenSans-Bold-webfont.woff) format("woff");
+}
+
+@font-face {
+  font-family: "Open Sans";
+  font-weight: 600;
+  src: url(./assets/fonts/OpenSans-Semibold-webfont.woff) format("woff");
+}
+
+body {
+  font-family: "Open Sans";
+  background: var(--background-primary);
+  color: var(--foreground-primary);
+}

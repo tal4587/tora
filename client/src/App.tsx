@@ -1,11 +1,12 @@
 import { Outlet } from 'react-router-dom'
 import './App.css'
+import Navigation from './components/navigation'
 
 function App() {
 
   return (
     <div>
-      Tora
+      <Navigation/>
       <Outlet/>
     </div>
   )

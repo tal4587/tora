@@ -1,0 +1,18 @@
+.button_primary_main {
+    background: none;
+    outline: none;
+    border: none;
+}
+
+.button_primary_main.filled {
+    font-size: 0.9em;
+    padding: 0.7em 2.5em;
+    background: var(--foreground-primary);
+    color: var(--background-secondary);
+    border-radius: 5px;
+    box-shadow: 20px 4px 54px rgba(0, 5, 137, 0.1);
+}
+
+.button_primary_main.stroke {
+
+}

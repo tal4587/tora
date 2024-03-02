@@ -1,0 +1,13 @@
+.button_link_main {
+    text-decoration: none;
+    color: inherit;
+}
+
+.button_link_main.filled {
+    font-size: 0.9em;
+    padding: 0.7em 2.5em;
+    background: var(--foreground-primary);
+    color: var(--background-secondary);
+    border-radius: 5px;
+    box-shadow: 20px 4px 54px rgba(0, 5, 137, 0.1);
+}

@@ -1,0 +1,38 @@
+.input_primary_form_body {
+    display: flex;
+    border: 2px solid var(--foreground-primary);
+    padding: 0.3em 1em;
+    border-radius: 5px;
+    background: var(--background-secondary-alpha);
+    box-shadow: 20px 4px 54px rgba(0, 5, 137, 0.1);
+}
+
+.input_primary_button {
+    outline: none;
+    background: none;
+    border: none;
+}
+
+.input_primary_button svg {
+    width: 25px;
+    height: 25px;
+}
+
+.input_primary_main {
+    outline: none;
+    background: none;
+    border: none;
+
+    text-align: right;
+    width: 25em;
+    max-width: 100%;
+    padding-right: 1em;
+    color: inherit;
+    font: inherit;
+    font-size: 0.85em;
+}
+
+.input_primary_main::placeholder {
+    color: inherit;
+    opacity: 0.5;
+}
