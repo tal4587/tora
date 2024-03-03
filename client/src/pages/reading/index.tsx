@@ -1,6 +1,12 @@
-import { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { FormEvent, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import "./style.css";
+import { reading, invite } from "../../assets/images"
+import ImageCard from "../../components/card/imagecard";
+import ButtonLink from "../../components/button/link";
+import InputPrimaryForm from "../../components/input/primaryform";
+import SearchIcon from "../../assets/svgs/Search.tsx";
+import FlowerIcon from "../../assets/svgs/Flower.tsx";
 
 export const Reading = () => {
 
@@ -8,34 +14,53 @@ export const Reading = () => {
     const [inviteLink, setInviteLink] = useState<string>("");
 
     const navigate = useNavigate();
-    const onOpenReading = () => {
-        navigate(`/reading/${readingLink}`)
+    const onOpenReading = (e: FormEvent) => {
+        e.preventDefault();
+        if(readingLink.length !== 0) {
+            navigate(`/reading/${readingLink}`);
+        }
     }
 
-    const onOpenInvite = () => {
-        navigate(`/invite/${inviteLink}`)
+    const onOpenInvite = (e: FormEvent) => {
+        e.preventDefault();
+        if(inviteLink.length !== 0){
+            navigate(`/invite/${inviteLink}`);
+        }
     }
 
     return (
         <main className="reading_body">
             <div className="reading_options">
-                <Link to="/reading/create">Create New Reading</Link>
 
-                <label>
-                    <input
-                        value={readingLink} onChange={e => setReadingLink(e.target.value)}
-                        type="text" placeholder="Enter Reading Link"/>
-                    <button disabled={readingLink.length === 0} 
-                        onClick={onOpenReading}>Open Reading</button>
-                </label>
+                <div className="reading_option left">
+                    <ImageCard href={ reading }/>
+                    <ButtonLink to="/reading/create">Create a Reading</ButtonLink>
+                    <div className="reading_options_container">
+                        <p className="reading_option_label">Looking for a reading?</p>
+                        <InputPrimaryForm
+                            icon={<SearchIcon/>}
+                            onSubmit={onOpenReading}
+                            value={readingLink} onChange={e => setReadingLink(e.target.value)}
+                            type="text" placeholder="Search or Enter Reading Id..."
+                            disabled={readingLink.length === 0}
+                        />
+                    </div>
+                </div>
 
-                <label>
-                    <input
-                        value={inviteLink} onChange={e => setInviteLink(e.target.value)}
-                        type="text" placeholder="Enter Invite Link"/>
-                    <button disabled={inviteLink.length === 0}
-                        onClick={onOpenInvite}>Open Invite</button>
-                </label>
+                <div className="reading_option right">
+                    <ImageCard href={ invite }/>
+                    <div className="reading_options_container">
+                        <p className="reading_option_label">Have an Invite?</p>
+                        <InputPrimaryForm onSubmit={onOpenInvite}
+                            icon={<FlowerIcon/>}
+                            value={inviteLink} onChange={e => setInviteLink(e.target.value)}
+                            type="text" placeholder="Enter Invite Link to start reading..."
+                            disabled={inviteLink.length === 0}
+                        />
+                        <p className="reading_option_label">Participate and Read Now</p>
+                    </div>
+                </div>
+
             </div>
         </main>
     )
