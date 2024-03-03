@@ -14,10 +14,10 @@ type InputPrimaryFormProps = {
 const InputPrimaryForm = ({ type = "text", placeholder, onSubmit,
     value, onChange, disabled, icon }: InputPrimaryFormProps) => {
     return (
-        <form className="input_primary_form_body" onSubmit={onSubmit}>
-            { icon && <button className="input_primary_button" type="submit" disabled={disabled}>{icon}</button> }
+        <form className="input_primaryform_form_body" onSubmit={onSubmit}>
+            { icon && <button className="input_primaryform_button" type="submit" disabled={disabled}>{icon}</button> }
             <input
-                className="input_primary_main"
+                className="input_primaryform_main"
                 value={value} onChange={onChange}
                 type={type} placeholder={placeholder} />
         </form>

@@ -1,8 +1,13 @@
 import { FormEvent, useRef } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import ButtonPrimary from "../../../components/button/primary";
+import InputPrimary from "../../../components/input/primary";
+import InputPrimaryTextbox from "../../../components/input/primarytextbox";
 import useCreateNewReading from "../../../hooks/mutations/useCreateNewReading";
 import { ReadingBody } from "../../../types/reading";
 import "./style.css";
-import { useNavigate } from "react-router-dom";
+import ImageCard from "../../../components/card/imagecard";
+import { reading } from "../../../assets/images";
 
 export const ReadingCreate = () => {
 
@@ -33,19 +38,22 @@ export const ReadingCreate = () => {
     
     return (
         <div className="create_reading_body">
-            <form onSubmit={onSubmit} className="create_reading_form">
-                <label>
-                    <input ref={name} type="text" placeholder="Name"/>
-                </label>
-                <label>
-                    <textarea ref={description} placeholder="Description"/>
-                </label>
-                <label>
-                    <input ref={email} type="email" placeholder="Email"/>
-                </label>
-                <button>Create Reading</button>
-                {!isError && JSON.stringify(data?.data)}
-            </form>
+            <div className="create_reading_section left">
+                <ImageCard href={reading} />
+            </div>
+            <div className="create_reading_section right">
+                <div className="create_reading_section_header">
+                    <Link to="/reading">Go Back</Link>
+                    <p>Create a New Reading</p>
+                </div>
+                <form onSubmit={onSubmit} className="create_reading_form">
+                    <InputPrimary ref={name} type="text" placeholder="Enter Reading Name"/>
+                    <InputPrimaryTextbox ref={description} placeholder="Enter Reading Description"/>
+                    <InputPrimary ref={email} type="email" placeholder="Enter User Email Id"/>
+                    <ButtonPrimary>Create a Reading</ButtonPrimary>
+                    {!isError && JSON.stringify(data?.data)}
+                </form>
+            </div>
         </div>
     )
 }

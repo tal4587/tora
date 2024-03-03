@@ -5,6 +5,7 @@
 }
 
 .button_primary_main.filled {
+    font: inherit;
     font-size: 0.9em;
     padding: 0.7em 2.5em;
     background: var(--foreground-primary);

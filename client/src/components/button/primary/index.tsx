@@ -3,8 +3,8 @@ import "./style.css";
 
 type ButtonPrimaryProps = {
     variant?: "filled" | "stroke",
-    children: React.ReactNode,
-    onClick: MouseEventHandler<HTMLButtonElement>,
+    children?: React.ReactNode,
+    onClick?: MouseEventHandler<HTMLButtonElement>,
 }
 
 const ButtonPrimary = ({ children, variant = "filled", onClick }: ButtonPrimaryProps) => {
