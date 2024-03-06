@@ -6,11 +6,6 @@ const invite = new mongoose.Schema({
         ref: "Reading",
         required: true,
     },
-    readBy: {
-        type: String,
-        enum: ["chapter", "verse"],
-        required: true
-    },
     book: {
         type: Number,
         required: true
@@ -26,6 +21,10 @@ const invite = new mongoose.Schema({
         type: String,
         enum: ["unread", "reading", "read"],
         default: "unread",
+    },
+    createdAt: {
+        type: Date,
+        default: Date.now()
     }
 });
 

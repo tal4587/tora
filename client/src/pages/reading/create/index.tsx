@@ -1,13 +1,14 @@
-import { FormEvent, useRef } from "react";
+import { FormEvent, useRef, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { reading } from "../../../assets/images";
 import ButtonPrimary from "../../../components/button/primary";
+import ImageCard from "../../../components/card/imagecard";
 import InputPrimary from "../../../components/input/primary";
+import InputPrimaryRadio from "../../../components/input/primaryradio";
 import InputPrimaryTextbox from "../../../components/input/primarytextbox";
 import useCreateNewReading from "../../../hooks/mutations/useCreateNewReading";
 import { ReadingBody } from "../../../types/reading";
 import "./style.css";
-import ImageCard from "../../../components/card/imagecard";
-import { reading } from "../../../assets/images";
 
 export const ReadingCreate = () => {
 
@@ -15,6 +16,7 @@ export const ReadingCreate = () => {
     const name = useRef<HTMLInputElement>(null);
     const description = useRef<HTMLTextAreaElement>(null);
     const email = useRef<HTMLInputElement>(null);
+    const [ verseToggle, setVerseToggle ] = useState<boolean>(false);
 
     const navigate = useNavigate();
     const onSubmit = (e: FormEvent) => {
@@ -28,6 +30,11 @@ export const ReadingCreate = () => {
         }
         if(description.current && description.current.value.length !== 0) {
             body = {...body, description: description.current.value}
+        }
+        if(verseToggle) {
+            body = {...body, readBy: "verse"}
+        } else {
+            body = {...body, readBy: "chapter"}
         }
         mutate(body, {
             onSuccess: (data) => {
@@ -50,6 +57,10 @@ export const ReadingCreate = () => {
                     <InputPrimary ref={name} type="text" placeholder="Enter Reading Name"/>
                     <InputPrimaryTextbox ref={description} placeholder="Enter Reading Description"/>
                     <InputPrimary ref={email} type="email" placeholder="Enter User Email Id"/>
+                    <div className="create_reading_radio_container">
+                        <InputPrimaryRadio checked={!verseToggle} onChange={() => setVerseToggle(false)} label="Read by Chapter"/>
+                        <InputPrimaryRadio checked={verseToggle} onChange={() => setVerseToggle(true)} label="Read by Verse"/>
+                    </div>
                     <ButtonPrimary>Create a Reading</ButtonPrimary>
                     {!isError && JSON.stringify(data?.data)}
                 </form>

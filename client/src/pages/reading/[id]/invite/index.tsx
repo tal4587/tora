@@ -1,6 +1,6 @@
 import { FormEvent, useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import bookNumberToPath from "../../../../constants/books";
+import { bookNumberToPath } from "../../../../constants/books";
 import useCreateNewInvite from "../../../../hooks/mutations/useCreateNewInvite";
 import { InviteBody } from "../../../../types/invite";
 import { Book } from "../../../../types/book";
@@ -30,6 +30,12 @@ export const ReadingInvite = () => {
         setChapterSelected(1);
         setVerseSelected(0);
     }, [bookSelected])
+
+    useEffect(() => {
+        console.log(bookNumberToPath.get(bookSelected))
+        console.log("Chapters: " , bookContent.length);
+        console.log("Verses: " , bookContent.reduce((a, c) => a + c.verses.length, 0));
+    }, [bookContent, bookSelected])
 
     useEffect(() => {
         setVerseSelected(0);

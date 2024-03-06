@@ -15,7 +15,12 @@ const reading = new mongoose.Schema({
     createdAt: {
         type: Date,
         default: Date.now()
-    }
+    },
+    readBy: {
+        type: String,
+        enum: ["chapter", "verse"],
+        required: true
+    },
 })
 
 export default mongoose.model("Reading", reading);

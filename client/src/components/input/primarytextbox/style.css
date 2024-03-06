@@ -10,9 +10,17 @@
     font: inherit;
     font-size: 0.85em;
 
+    height: 8em;
+    resize: none;
+
     border: 2px solid var(--foreground-primary);
     padding: 0.3em 1em;
     border-radius: 5px;
     background: var(--background-secondary-alpha);
     box-shadow: 20px 4px 54px rgba(0, 5, 137, 0.1);
+}
+
+.input_primary_textbox_main::placeholder {
+    color: inherit;
+    opacity: 0.5;
 }

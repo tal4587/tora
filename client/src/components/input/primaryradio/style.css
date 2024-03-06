@@ -1,0 +1,16 @@
+.input_primary_radio_body {
+    display: flex;
+    border: 2px solid var(--foreground-primary);
+    padding: 0.3em 1em;
+    border-radius: 5px;
+    background: var(--background-secondary-alpha);
+    box-shadow: 20px 4px 54px rgba(0, 5, 137, 0.1);
+    justify-content: flex-end;
+    gap: 1em;
+
+    width: 100%;
+}
+
+.input_primary_radio_label {
+    font-size: 0.9em;
+}

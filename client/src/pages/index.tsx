@@ -1,9 +1,10 @@
-import { Link } from "react-router-dom"
+import ButtonLink from "../components/button/link"
+import "./style.css"
 
 const Home = () => {
     return (
-        <div>
-            <Link to="/reading">Get Started</Link>
+        <div className="home_body">
+            <ButtonLink to="/reading">Get Started</ButtonLink>
         </div>
     )
 }

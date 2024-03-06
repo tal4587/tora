@@ -1,17 +1,16 @@
 import { FormEvent, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import "./style.css";
-import { reading, invite } from "../../assets/images"
-import ImageCard from "../../components/card/imagecard";
-import ButtonLink from "../../components/button/link";
-import InputPrimaryForm from "../../components/input/primaryform";
+import { reading } from "../../assets/images";
 import SearchIcon from "../../assets/svgs/Search.tsx";
-import FlowerIcon from "../../assets/svgs/Flower.tsx";
+import ButtonLink from "../../components/button/link";
+import ImageCard from "../../components/card/imagecard";
+import InputPrimaryForm from "../../components/input/primaryform";
+import "./style.css";
 
 export const Reading = () => {
 
     const [readingLink, setReadingLink] = useState<string>("");
-    const [inviteLink, setInviteLink] = useState<string>("");
+    // const [inviteLink, setInviteLink] = useState<string>("");
 
     const navigate = useNavigate();
     const onOpenReading = (e: FormEvent) => {
@@ -21,12 +20,12 @@ export const Reading = () => {
         }
     }
 
-    const onOpenInvite = (e: FormEvent) => {
-        e.preventDefault();
-        if(inviteLink.length !== 0){
-            navigate(`/invite/${inviteLink}`);
-        }
-    }
+    // const onOpenInvite = (e: FormEvent) => {
+    //     e.preventDefault();
+    //     if(inviteLink.length !== 0){
+    //         navigate(`/invite/${inviteLink}`);
+    //     }
+    // }
 
     return (
         <main className="reading_body">
@@ -47,7 +46,7 @@ export const Reading = () => {
                     </div>
                 </div>
 
-                <div className="reading_option right">
+                {/* <div className="reading_option right">
                     <ImageCard href={ invite }/>
                     <div className="reading_options_container">
                         <p className="reading_option_label">Have an Invite?</p>
@@ -59,7 +58,7 @@ export const Reading = () => {
                         />
                         <p className="reading_option_label">Participate and Read Now</p>
                     </div>
-                </div>
+                </div> */}
 
             </div>
         </main>

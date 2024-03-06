@@ -23,3 +23,9 @@
     max-width: 90vw;
     margin: 0 auto;
 }
+
+.create_reading_radio_container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1em;
+}
