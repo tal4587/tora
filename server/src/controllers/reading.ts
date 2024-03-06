@@ -1,5 +1,7 @@
-import { NextFunction, Request, Response } from "express"
-import Reading from "../models/reading"
+import { NextFunction, Request, Response } from "express";
+import books from "../constants/books";
+import Invite from "../models/invite";
+import Reading from "../models/reading";
 
 export const getAllReadings = async (req: Request, res: Response, next: NextFunction) => {
     try {
@@ -24,7 +26,34 @@ export const getAllReadings = async (req: Request, res: Response, next: NextFunc
 export const createReading = async (req: Request, res: Response, next: NextFunction) => {
     try {
         let reading = await Reading.create(req.body);
-        res.status(201).json({ success: true, reading })
+
+        let invites: { reading: string, book: number, chapter: number, verse?: number, status: string }[] = [];
+        if(reading.readBy === "chapter") {
+            books.forEach((book) => {
+                invites.push(...book.chapters.map((chapter) => ({
+                    reading: reading.id,
+                    book: book.id,
+                    chapter: chapter.id,
+                    status: "unread",
+                })))
+            })
+        } else {
+            books.forEach((book) => {
+                book.chapters.forEach((chapter) => {
+                    invites.push(...Array.from({ length: chapter.verseCount }, (_, id) => ({
+                        reading: reading.id,
+                        book: book.id,
+                        chapter: chapter.id,
+                        verse: id,
+                        status: "unread"
+                    })))
+                })
+            });
+        }
+
+        await Invite.insertMany(invites);
+
+        res.status(201).json({ success: true, reading });
     } catch (error) {
         next({ status: 404, message: "Cound Not Create Reading"})
     }
