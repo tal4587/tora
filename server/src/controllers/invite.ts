@@ -1,5 +1,6 @@
 import { NextFunction, Request, Response } from "express";
 import Invite from "../models/invite";
+import { Types } from "mongoose"
 
 export const getAllInvites = async (req: Request, res: Response, next: NextFunction) => {
     try {
@@ -35,7 +36,19 @@ export const getAllInviteFromReading = async (req: Request, res: Response, next:
         const total = await Invite.countDocuments();
         const invites = await Invite.find(query).populate("reading", "name");
         const count = invites.length;
-        res.json({ success: true, invites, total, count })
+        res.json({ success: true, invites, total, count });
+    } catch (error) {
+        next({ status: 404, message: "Not Found", detail: "No Reading found"})
+    }
+}
+
+export const getRandomInviteFromReading = async (req: Request, res: Response, next: NextFunction) => {
+    try {
+        const invite = await Invite.aggregate([
+            { $match: { reading: new Types.ObjectId(req.params.id), status: "unread" }},
+            { $sample: { size: 1 }}
+        ]);
+        res.json({ success: true, invite });
     } catch (error) {
         next({ status: 404, message: "Not Found", detail: "No Reading found"})
     }
