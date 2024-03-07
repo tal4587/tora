@@ -48,7 +48,7 @@ export const getRandomInviteFromReading = async (req: Request, res: Response, ne
             { $match: { reading: new Types.ObjectId(req.params.id), status: "unread" }},
             { $sample: { size: 1 }}
         ]);
-        res.json({ success: true, invite });
+        res.json({ success: true, invite: invite[0] });
     } catch (error) {
         next({ status: 404, message: "Not Found", detail: "No Reading found"})
     }
