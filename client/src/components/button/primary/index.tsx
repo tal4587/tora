@@ -5,11 +5,12 @@ type ButtonPrimaryProps = {
     variant?: "filled" | "stroke",
     children?: React.ReactNode,
     onClick?: MouseEventHandler<HTMLButtonElement>,
+    disabled?: boolean,
 }
 
-const ButtonPrimary = ({ children, variant = "filled", onClick }: ButtonPrimaryProps) => {
+const ButtonPrimary = ({ children, variant = "filled", onClick, disabled }: ButtonPrimaryProps) => {
     return (
-        <button className={`button_primary_main ${variant}`} onClick={onClick}>
+        <button disabled={disabled} className={`button_primary_main ${variant}`} onClick={onClick}>
             {children}
         </button>
     )

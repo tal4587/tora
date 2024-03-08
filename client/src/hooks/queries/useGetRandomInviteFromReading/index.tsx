@@ -8,7 +8,10 @@ const useGetRandomInviteFromReading = (reading_id: string) => {
         queryFn: () => {
             const url = `/reading/${reading_id}/invite/random`;
             return instance.get<InviteData>(url);
-        }
+        },
+        refetchInterval: false,
+        refetchOnWindowFocus: false,
+        refetchOnMount: false,
     })
 }
 

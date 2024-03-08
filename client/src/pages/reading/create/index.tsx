@@ -12,7 +12,7 @@ import "./style.css";
 
 export const ReadingCreate = () => {
 
-    const { mutate, data, isError } = useCreateNewReading();
+    const { mutate, data, isError, isPending } = useCreateNewReading();
     const name = useRef<HTMLInputElement>(null);
     const description = useRef<HTMLTextAreaElement>(null);
     const email = useRef<HTMLInputElement>(null);
@@ -61,7 +61,7 @@ export const ReadingCreate = () => {
                         <InputPrimaryRadio checked={!verseToggle} onChange={() => setVerseToggle(false)} label="Read by Chapter"/>
                         <InputPrimaryRadio checked={verseToggle} onChange={() => setVerseToggle(true)} label="Read by Verse"/>
                     </div>
-                    <ButtonPrimary>Create a Reading</ButtonPrimary>
+                    <ButtonPrimary disabled={isPending}>Create a Reading</ButtonPrimary>
                     {!isError && JSON.stringify(data?.data)}
                 </form>
             </div>
