@@ -1,6 +1,6 @@
 import { FormEvent, useRef, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { reading } from "../../../assets/images";
+import { icon } from "../../../assets/images";
 import ButtonPrimary from "../../../components/button/primary";
 import ImageCard from "../../../components/card/imagecard";
 import InputPrimary from "../../../components/input/primary";
@@ -46,7 +46,7 @@ export const ReadingCreate = () => {
     return (
         <div className="create_reading_body">
             <div className="create_reading_section left">
-                <ImageCard href={reading} />
+                <ImageCard href={icon} />
             </div>
             <div className="create_reading_section right">
                 <div className="create_reading_section_header">

@@ -8,7 +8,6 @@ import App from './App.tsx'
 import { Reading } from './pages/reading/index.tsx'
 import { ReadingCreate } from './pages/reading/create/index.tsx'
 import { ReadingId } from './pages/reading/[id]/index.tsx'
-import { ReadingInvite } from './pages/reading/[id]/invite/index.tsx'
 import Home from './pages/index.tsx'
 
 const router = createBrowserRouter([
@@ -20,7 +19,6 @@ const router = createBrowserRouter([
       { path: "/reading", element: <Reading/>},
       { path: "/reading/create", element: <ReadingCreate/>},
       { path: "/reading/:id", element: <ReadingId/>},
-      { path: "/reading/:id/invite", element: <ReadingInvite/>},
     ]
   }
 ])

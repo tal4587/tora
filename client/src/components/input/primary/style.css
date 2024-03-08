@@ -14,7 +14,7 @@
     padding: 0.5em 1em;
     border-radius: 5px;
     background: var(--background-secondary-alpha);
-    box-shadow: 20px 4px 54px rgba(0, 5, 137, 0.1);
+    box-shadow: var(--primary-box-shadow);
 }
 
 .input_primary_main::placeholder {

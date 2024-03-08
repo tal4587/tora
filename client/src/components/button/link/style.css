@@ -9,5 +9,5 @@
     background: var(--foreground-primary);
     color: var(--background-secondary);
     border-radius: 5px;
-    box-shadow: 20px 4px 54px rgba(0, 5, 137, 0.1);
+    box-shadow: var(--primary-box-shadow);
 }

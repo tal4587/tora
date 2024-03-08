@@ -5,23 +5,20 @@
 }
 
 :root {
-  --background-primary: #BEE8FF;
-  --foreground-primary: #030AC5;
-  --background-secondary: #E8F6FE;
-  --background-secondary-alpha: #e8f6fecc;
+  --background-primary: #FFFBF5;
+  --foreground-primary: #5D2B00;
+  --background-secondary: #FEF5E8;
+  --background-secondary-alpha: #fef5e8cc;
   --accent-primary: #FFF5CF;
+
+  --primary-box-shadow: 0px 4px 11px #5d2b0040;;
 }
 
 @font-face {
   font-family: "Open Sans";
-  font-weight: 700;
-  src: url(./assets/fonts/OpenSans-Bold-webfont.woff) format("woff");
-}
-
-@font-face {
-  font-family: "Open Sans";
-  font-weight: 600;
-  src: url(./assets/fonts/OpenSans-Semibold-webfont.woff) format("woff");
+  src: url(./assets/fonts/OpenSans.woff2) format("woff2-variations");
+  font-weight: 300 800;
+  font-display: swap;
 }
 
 body {

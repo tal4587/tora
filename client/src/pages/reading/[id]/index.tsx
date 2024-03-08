@@ -1,5 +1,5 @@
 import { Link, useParams } from "react-router-dom";
-import { reading } from "../../../assets/images";
+import { icon } from "../../../assets/images";
 import ImageCard from "../../../components/card/imagecard";
 import useGetRandomInviteFromReading from "../../../hooks/queries/useGetRandomInviteFromReading";
 import useGetReading from "../../../hooks/queries/useGetReading";
@@ -30,8 +30,9 @@ export const ReadingId = () => {
     return (
         <div className="reading_single_body">
             <div className="reading_single_section left">
-                <ImageCard href={reading}/>
+                <ImageCard href={icon}/>
                 <p>{ isReadingLoading ? "Loading..." : readingData?.data.reading.name}</p>
+                <p>{ isReadingLoading ? "Loading..." : readingData?.data.reading.email}</p>
                 { isReadingError && <Link to="/reading/">Invalid Reading | Return Back</Link>}
             </div>
             <div className="reading_single_section right">

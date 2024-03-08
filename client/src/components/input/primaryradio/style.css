@@ -4,7 +4,7 @@
     padding: 0.3em 1em;
     border-radius: 5px;
     background: var(--background-secondary-alpha);
-    box-shadow: 20px 4px 54px rgba(0, 5, 137, 0.1);
+    box-shadow: var(--primary-box-shadow);
     justify-content: flex-end;
     gap: 1em;
 
