@@ -2,7 +2,7 @@ import { Link, To } from "react-router-dom";
 import "./style.css";
 
 type ButtonPrimaryProps = {
-    variant?: "filled" | "stroke",
+    variant?: "filled" | "stroke" | "filled-inverse",
     children: React.ReactNode,
     to: To,
 }

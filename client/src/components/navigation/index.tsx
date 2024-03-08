@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import "./style.css"
 
 const Navigation = () => {
@@ -6,7 +7,7 @@ const Navigation = () => {
             <div className="navigation_wrapper">
                 <div className="navigation_left"></div>
                 <div className="navigation_right">
-                    <h1 className="navigation_logo">thoraread.online</h1>
+                    <Link to="/" className="navigation_logo">thoraread.online</Link>
                 </div>
             </div>
         </nav>

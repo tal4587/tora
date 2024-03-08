@@ -1,8 +1,14 @@
 import "./style.css"
 
-const ImageCard = ( { href, alt }: { href: string, alt?: string}) => {
+type ImageCardProps = {
+    href: string,
+    alt?: string,
+    variant?: "solid" | "glass",  
+}
+
+const ImageCard = ( { href, alt, variant = "solid" }: ImageCardProps) => {
     return (
-        <div className="image_card_main">
+        <div className={`image_card_main ${variant}`}>
             <img src={href} alt={alt}/>
         </div>
     )

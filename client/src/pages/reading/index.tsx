@@ -1,7 +1,6 @@
 import { FormEvent, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { icon } from "../../assets/images";
-import SearchIcon from "../../assets/svgs/Search.tsx";
+import { iconwhite } from "../../assets/images";
 import ButtonLink from "../../components/button/link";
 import ImageCard from "../../components/card/imagecard";
 import InputPrimaryForm from "../../components/input/primaryform";
@@ -24,12 +23,13 @@ export const Reading = () => {
             <div className="reading_options">
 
                 <div className="reading_option left">
-                    <ImageCard href={ icon }/>
-                    <ButtonLink to="/reading/create">Create a Reading</ButtonLink>
+                    <div className="reading_home_icon">
+                        <ImageCard href={ iconwhite } variant="glass"/>
+                    </div>
+                    <ButtonLink variant="filled-inverse" to="/reading/create">Create a Reading</ButtonLink>
                     <div className="reading_options_container">
                         <p className="reading_option_label">Looking for a reading?</p>
                         <InputPrimaryForm
-                            icon={<SearchIcon/>}
                             onSubmit={onOpenReading}
                             value={readingLink} onChange={e => setReadingLink(e.target.value)}
                             type="text" placeholder="Search or Enter Reading Id..."

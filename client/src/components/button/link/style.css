@@ -1,13 +1,19 @@
 .button_link_main {
     text-decoration: none;
     color: inherit;
+    border-radius: 5px;
+    padding: 0.7em 2.5em;
+    font-size: 0.9em;
 }
 
 .button_link_main.filled {
-    font-size: 0.9em;
-    padding: 0.7em 2.5em;
     background: var(--foreground-primary);
     color: var(--background-secondary);
-    border-radius: 5px;
+    box-shadow: var(--primary-box-shadow);
+}
+
+.button_link_main.filled-inverse { 
+    background: var(--background-primary);
+    color: var(--foreground-secondary);
     box-shadow: var(--primary-box-shadow);
 }
