@@ -1,11 +1,12 @@
 .create_reading_body {
     padding-top: 4em;
     display: grid;
-    grid-template-columns: 1fr 3fr;
     width: 1080px;
     max-width: 90vw;
     margin: 0 auto;
 }
+
+
 
 .create_reading_section_header {
     display: flex;
@@ -33,4 +34,18 @@
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 1em;
+}
+
+@media only screen and (min-width: 1080px) {
+    .create_reading_body {
+        grid-template-columns: 1fr 3fr; 
+    }
+
+}
+
+
+@media only screen and (max-width: 1080px) {
+    .create_reading_section.left {
+        display: none;
+    }
 }
