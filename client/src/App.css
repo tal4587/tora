@@ -1,0 +1,9 @@
+.center_navigation_body {
+    width: 25em;
+    max-width: 90vw;
+    transform: translateX(20%);
+}
+
+.right_navigation_logo img {
+    height: 1.5em;
+}

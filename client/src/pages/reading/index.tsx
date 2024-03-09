@@ -5,6 +5,7 @@ import ButtonLink from "../../components/button/link";
 import ImageCard from "../../components/card/imagecard";
 import InputPrimaryForm from "../../components/input/primaryform";
 import "./style.css";
+import Left from "../../assets/svgs/Left";
 
 export const Reading = () => {
 
@@ -35,6 +36,7 @@ export const Reading = () => {
                     <div className="reading_options_container">
                         <p className="reading_option_label">השתתפות בקריאה קיימת</p>
                         <InputPrimaryForm
+                            icon={<Left/>}
                             onSubmit={onOpenReading}
                             value={readingLink} onChange={e => setReadingLink(e.target.value)}
                             type="text" placeholder="Enter Reading Id..."

@@ -1,21 +1,19 @@
-import { Link, useLocation } from "react-router-dom";
-import "./style.css"
-import { logo, logowhite } from "../../assets/images";
+import "./style.css";
 
-const Navigation = () => {
+type NavigationProps = {
+    left?: React.ReactNode,
+    center?: React.ReactNode,
+    right?: React.ReactNode,
+}
 
-    const location = useLocation();
+const Navigation = ({ left, center, right}: NavigationProps) => {
 
     return (
         <nav className="navigation_body">
             <div className="navigation_wrapper">
-                <div className="navigation_left"></div>
-                <div className="navigation_center"></div>
-                <div className="navigation_right">
-                    <Link to="/"><div className="navigation_logo">
-                        <img src={location.pathname === "/reading" ? logowhite: logo} alt="thoraread.online" />    
-                    </div></Link>
-                </div>
+                <div className="navigation_left">{left}</div>
+                <div className="navigation_center">{center}</div>
+                <div className="navigation_right">{right}</div>
             </div>
         </nav>
     )
