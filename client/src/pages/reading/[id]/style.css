@@ -7,6 +7,11 @@
     margin: 0 auto;
 }
 
+.reading_single_image_card_container {
+    width: 12em;
+    height: 12em;
+}
+
 .reading_single_section.right{
     overflow-y: scroll;
     height: calc(100vh - 4em);

@@ -26,13 +26,18 @@ export const Reading = () => {
                     <div className="reading_home_icon">
                         <ImageCard href={ iconwhite } variant="glass"/>
                     </div>
-                    <ButtonLink variant="filled-inverse" to="/reading/create">Create a Reading</ButtonLink>
+                    <div className="reading_description">
+                        <h4>לרפואת אריאל נסים בן זר</h4>
+                        <h2>קריאת התורה אונליין</h2>
+                        <h3> לפי פרקים או פסוקים לרפואת חולי עם ישראל הפצועים, והחטופים!</h3>
+                    </div>
+                    <ButtonLink variant="filled-inverse" to="/reading/create">לפתיחת קריאה חדשה</ButtonLink>
                     <div className="reading_options_container">
-                        <p className="reading_option_label">Looking for a reading?</p>
+                        <p className="reading_option_label">השתתפות בקריאה קיימת</p>
                         <InputPrimaryForm
                             onSubmit={onOpenReading}
                             value={readingLink} onChange={e => setReadingLink(e.target.value)}
-                            type="text" placeholder="Search or Enter Reading Id..."
+                            type="text" placeholder="Enter Reading Id..."
                             disabled={readingLink.length === 0}
                         />
                     </div>

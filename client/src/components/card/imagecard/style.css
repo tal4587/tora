@@ -19,7 +19,7 @@
 }
 
 .image_card_main img {
-    width: 10em;
-    height: 10em;
+    width: 100%;
+    height: 100%;
 }
 

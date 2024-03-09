@@ -13,12 +13,29 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    gap: 2em;
+    gap: 1.5em;
 }
 
 .reading_home_icon {
+    width: 10em;
+    height: 10em;
+}
+
+.reading_description {
+    color: var(--background-primary);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.reading_description h2 {
+    font-size: 3em;
+}
+
+.reading_description h3 {
+    font-size: 2em;
     width: 12em;
-    height: 12em;
 }
 
 .reading_options_container {
@@ -31,5 +48,6 @@
 }
 
 .reading_option_label {
-    font-weight: 800;
+    font-weight: 600;
+    color: var(--background-primary);
 }

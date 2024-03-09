@@ -15,6 +15,11 @@
     height: 3em;
 }
 
+.create_reading_image_card_container {
+    width: 12em;
+    height: 12em;
+}
+
 .create_reading_form {
     display: flex;
     flex-direction: column;

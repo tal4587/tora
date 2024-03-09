@@ -30,7 +30,9 @@ export const ReadingId = () => {
     return (
         <div className="reading_single_body">
             <div className="reading_single_section left">
-                <ImageCard href={icon}/>
+                <div className="reading_single_image_card_container">
+                    <ImageCard padding="2em" href={icon}/>
+                </div>
                 <p>{ isReadingLoading ? "Loading..." : readingData?.data.reading.name}</p>
                 <p>{ isReadingLoading ? "Loading..." : readingData?.data.reading.email}</p>
                 { isReadingError && <Link to="/reading/">Invalid Reading | Return Back</Link>}

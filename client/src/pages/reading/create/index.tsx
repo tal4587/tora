@@ -46,22 +46,24 @@ export const ReadingCreate = () => {
     return (
         <div className="create_reading_body">
             <div className="create_reading_section left">
-                <ImageCard href={icon} />
+                <div className="create_reading_image_card_container">
+                    <ImageCard padding="2em" href={icon} />
+                </div>
             </div>
             <div className="create_reading_section right">
                 <div className="create_reading_section_header">
                     <Link to="/reading">Go Back</Link>
-                    <p>Create a New Reading</p>
+                    <p>לפתיחת קריאה חדשהg</p>
                 </div>
                 <form onSubmit={onSubmit} className="create_reading_form">
                     <InputPrimary ref={name} type="text" placeholder="Enter Reading Name"/>
                     <InputPrimaryTextbox ref={description} placeholder="Enter Reading Description"/>
                     <InputPrimary ref={email} type="email" placeholder="Enter User Email Id"/>
                     <div className="create_reading_radio_container">
-                        <InputPrimaryRadio checked={!verseToggle} onChange={() => setVerseToggle(false)} label="Read by Chapter"/>
-                        <InputPrimaryRadio checked={verseToggle} onChange={() => setVerseToggle(true)} label="Read by Verse"/>
+                        <InputPrimaryRadio checked={!verseToggle} onChange={() => setVerseToggle(false)} label="קריאה לפי פרקים"/>
+                        <InputPrimaryRadio checked={verseToggle} onChange={() => setVerseToggle(true)} label="קריאה לפי פסוקים"/>
                     </div>
-                    <ButtonPrimary disabled={isPending}>Create a Reading</ButtonPrimary>
+                    <ButtonPrimary disabled={isPending}>לפתיחת קריאה חדשהg</ButtonPrimary>
                     {!isError && JSON.stringify(data?.data)}
                 </form>
             </div>
