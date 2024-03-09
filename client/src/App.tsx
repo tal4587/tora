@@ -8,6 +8,16 @@ import { FormEvent, useState } from 'react';
 
 function App() {
   const location = useLocation();
+
+  const LeftNav = () => {
+    return (
+      <div className='left_navigation_body'>
+        <Link to="/reading/search">
+          <SearchIcon/>
+        </Link>
+      </div>
+    )
+  }
   
   const CenterNav = () => {
 
@@ -44,6 +54,7 @@ function App() {
   return (
     <div>
       <Navigation
+        left={location.pathname === "/reading" ? <LeftNav/>: undefined}
         center={location.pathname === "/reading" ? <CenterNav />: undefined}
         right={<RightNav />}
       />

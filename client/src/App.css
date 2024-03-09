@@ -7,3 +7,17 @@
 .right_navigation_logo img {
     height: 1.5em;
 }
+
+.left_navigation_body {
+    display: none;
+}
+
+@media only screen and (max-width: 1080px) {
+    .center_navigation_body {
+        display: none;
+    }
+
+    .left_navigation_body {
+        display: block;
+    }
+}

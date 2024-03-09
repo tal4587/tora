@@ -9,6 +9,7 @@ import { Reading } from './pages/reading/index.tsx'
 import { ReadingCreate } from './pages/reading/create/index.tsx'
 import { ReadingId } from './pages/reading/[id]/index.tsx'
 import Home from './pages/index.tsx'
+import ReadingSearch from './pages/reading/search/index.tsx'
 
 const router = createBrowserRouter([
   { 
@@ -18,6 +19,7 @@ const router = createBrowserRouter([
       { path: "/", element: <Home/>},
       { path: "/reading", element: <Reading/>},
       { path: "/reading/create", element: <ReadingCreate/>},
+      { path: "/reading/search", element: <ReadingSearch/>},
       { path: "/reading/:id", element: <ReadingId/>},
     ]
   }
