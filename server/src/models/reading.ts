@@ -21,6 +21,15 @@ const reading = new mongoose.Schema({
         enum: ["chapter", "verse"],
         required: true
     },
+    readCount: {
+        type: Number,
+    },
+    readingCount: {
+        type: Number,
+    },
+    unreadCount: {
+        type: Number,
+    }
 })
 
 export default mongoose.model("Reading", reading);

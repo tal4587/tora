@@ -6,6 +6,11 @@ import Reading from "../models/reading";
 export const getAllReadings = async (req: Request, res: Response, next: NextFunction) => {
     try {
 
+        // Pagination Functionality
+        const page =  parseInt(req.query.page as string, 10) || 1;
+        const pageSize = 10;
+        const skip = (page - 1) * pageSize;
+
         // Search Functionality
         let query = {};
         if(req.query.search) {
@@ -14,10 +19,11 @@ export const getAllReadings = async (req: Request, res: Response, next: NextFunc
         }
         
         const total = await Reading.countDocuments();
-        const reading = await Reading.find(query);
+        const pages = Math.ceil(total / pageSize);
+        const reading = await Reading.find(query).skip(skip).limit(pageSize);
         const count = reading.length;
 
-        res.json({ success: true, reading, total, count })
+        res.json({ success: true, reading, total, count, page, pages })
     } catch (error) {
         next({ status: 404, message: "Cannot find Readings"})
     }
@@ -25,7 +31,9 @@ export const getAllReadings = async (req: Request, res: Response, next: NextFunc
 
 export const createReading = async (req: Request, res: Response, next: NextFunction) => {
     try {
-        let reading = await Reading.create(req.body);
+
+        const body = {...req.body, unreadCount: (req.body.readBy === "chapter" ? 187: 5845), readingCount: 0, readCount: 0}
+        let reading = await Reading.create(body);
 
         let invites: { reading: string, book: number, chapter: number, verse?: number, status: string }[] = [];
         if(reading.readBy === "chapter") {
