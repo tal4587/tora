@@ -1,0 +1,13 @@
+.reading_search_body {
+    padding-top: 4em;
+}
+
+.reading_search_bar_container {
+    width: 25em;
+    max-width: 90vw;
+    margin: 0 auto;
+}
+
+.reading_search_middle {
+    min-height: 75vh;
+}

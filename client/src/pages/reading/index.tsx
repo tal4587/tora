@@ -36,6 +36,7 @@ export const Reading = () => {
                     <div className="reading_options_container">
                         <p className="reading_option_label">השתתפות בקריאה קיימת</p>
                         <InputPrimaryForm
+                            variant='glass'
                             icon={<Left/>}
                             onSubmit={onOpenReading}
                             value={readingLink} onChange={e => setReadingLink(e.target.value)}

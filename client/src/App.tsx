@@ -34,6 +34,7 @@ function App() {
     return (
       <div className='center_navigation_body'>
         <InputPrimaryForm
+          variant='glass'
           onSubmit={onSearch}
           icon={<SearchIcon/>}
           value={keyword} onChange={e => setKeyword(e.target.value)}
