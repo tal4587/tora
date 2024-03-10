@@ -53,7 +53,7 @@ export const ReadingCreate = () => {
             <div className="create_reading_section right">
                 <div className="create_reading_section_header">
                     <Link to="/reading">Go Back</Link>
-                    <p>לפתיחת קריאה חדשהg</p>
+                    <p>לפתיחת קריאה חדשה</p>
                 </div>
                 <form onSubmit={onSubmit} className="create_reading_form">
                     <InputPrimary ref={name} type="text" placeholder="Enter Reading Name"/>
@@ -63,7 +63,7 @@ export const ReadingCreate = () => {
                         <InputPrimaryRadio checked={!verseToggle} onChange={() => setVerseToggle(false)} label="קריאה לפי פרקים"/>
                         <InputPrimaryRadio checked={verseToggle} onChange={() => setVerseToggle(true)} label="קריאה לפי פסוקים"/>
                     </div>
-                    <ButtonPrimary disabled={isPending}>לפתיחת קריאה חדשהg</ButtonPrimary>
+                    <ButtonPrimary disabled={isPending}>{isPending ? "Loading..." : "לפתיחת קריאה חדשה"}</ButtonPrimary>
                     {!isError && JSON.stringify(data?.data)}
                 </form>
             </div>

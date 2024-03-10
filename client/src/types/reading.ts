@@ -3,7 +3,10 @@ interface Reading {
     name: string,
     email: string,
     createdAt: string
-    readBy: "verse" | "chapter"
+    readBy: "verse" | "chapter",
+    readCount: number,
+    readingCount: number,
+    unreadCount: number,
 }
 
 export interface ReadingData {

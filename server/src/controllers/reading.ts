@@ -52,7 +52,7 @@ export const createReading = async (req: Request, res: Response, next: NextFunct
                         reading: reading.id,
                         book: book.id,
                         chapter: chapter.id,
-                        verse: id,
+                        verse: id + 1,
                         status: "unread"
                     })))
                 })

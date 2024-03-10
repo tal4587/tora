@@ -1,5 +1,8 @@
 .reading_search_body {
     padding-top: 4em;
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
 }
 
 .reading_search_bar_container {
@@ -9,5 +12,44 @@
 }
 
 .reading_search_middle {
-    min-height: 75vh;
+    min-height: 70vh;
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+}
+
+.reading_search_middle a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.reading_card_body {
+    width: 30em;
+    max-width: 90vw;
+    display: flex;
+    justify-content: space-between;
+    margin: 0 auto;
+
+    background: var(--background-secondary);
+    padding: 1em 2em;
+    box-shadow: var(--primary-box-shadow);
+}
+
+.reading_card_right {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+.reading_card_subtitle {
+    display: flex;
+    gap: 1em;
+}
+
+.reading_search_bottom {
+    width: 25em;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
