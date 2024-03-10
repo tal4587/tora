@@ -24,6 +24,13 @@
     padding-inline: 1em;
 }
 
+.reading_single_bottom_buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+    padding-block: 1em;
+}
+
 @media only screen and (min-width: 1080px) {
     .reading_single_body {
         grid-template-columns: 1fr 3fr; 

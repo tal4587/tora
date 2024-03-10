@@ -5,6 +5,8 @@ import useGetRandomInviteFromReading from "../../../hooks/queries/useGetRandomIn
 import useGetReading from "../../../hooks/queries/useGetReading";
 import useFetchBook from "../../../hooks/utils/useFetchBook";
 import "./style.css";
+import ButtonPrimary from "../../../components/button/primary";
+import ProgressBar from "../../../components/progressbar";
 
 export const ReadingId = () => {
 
@@ -33,14 +35,23 @@ export const ReadingId = () => {
                 <div className="reading_single_image_card_container">
                     <ImageCard padding="2em" href={icon}/>
                 </div>
-                <div className="reading_single_title_container">
-                    { isReadingLoading ? "Loading..." : (<>
-                        <h3>{readingData?.data.reading.name}</h3>
-                        <p>{readingData?.data.reading.email}</p>
-                        { isReadingError && <Link to="/reading/">Invalid Reading | Return Back</Link>}
-                        </>
-                    )}
-                </div>
+                {isReadingLoading ? "Loading" : !readingData? "Loading...":(
+                    <div>
+                        <div className="reading_single_title_container">
+                            <h3>{readingData.data.reading.name}</h3>
+                            <p>{readingData.data.reading.email}</p>
+                            {isReadingError && <Link to="/reading/">Invalid Reading | Return Back</Link>}
+                        </div>
+                        <div className="reading_single_progress">
+                            {readingData.data.reading.readCount} Read
+                            <ProgressBar percentage={(readingData.data.reading.readCount * 100)/ (readingData.data.reading.readCount + readingData.data.reading.unreadCount + readingData.data.reading.readingCount)}/>
+                            {readingData.data.reading.readingCount} Reading
+                            <ProgressBar percentage={(readingData.data.reading.readingCount * 100)/ (readingData.data.reading.readCount + readingData.data.reading.unreadCount + readingData.data.reading.readingCount)}/>
+                            {readingData.data.reading.unreadCount} Unread
+                            <ProgressBar percentage={(readingData.data.reading.unreadCount * 100)/ (readingData.data.reading.readCount + readingData.data.reading.unreadCount + readingData.data.reading.readingCount)}/>
+                        </div>
+                    </div>
+                ) }
             </div>
             <div className="reading_single_section right">
                 { isRandomInviteLoading ? "Loading..." : (
@@ -48,7 +59,14 @@ export const ReadingId = () => {
                         <h4>Book {randomInvite?.data.invite.book}</h4>
                         <div>Chapter {randomInvite?.data.invite.chapter}</div>
                         { readingData?.data.reading.readBy === "verse" && <div>Verse {randomInvite?.data.invite.verse}</div>}
-                        { readingData?.data.reading.readBy === "chapter" ? <Chapter/> : <Verse/>}
+                        <div className="reading_single_text">
+                            { readingData?.data.reading.readBy === "chapter" ? <Chapter/> : <Verse/>}
+                        </div>
+                        <div className="reading_single_bottom_buttons">
+                            <ButtonPrimary>Mark as Read</ButtonPrimary>
+                            <ButtonPrimary>I want to read Another</ButtonPrimary>
+                            <ButtonPrimary>Can't Read now will read later</ButtonPrimary>
+                        </div>
                     </div>
                 )}
             </div>
