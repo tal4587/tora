@@ -10,7 +10,7 @@ const ReadingSearch = () => {
 
     const [searchParams, setSearchParams] = useSearchParams();
     const keyword = searchParams.get("keyword") || "";
-    const page = searchParams.get("page") || "0";
+    const page = searchParams.get("page") || "1";
     const [searchKeyword, setSearchKeyword] = useState<string>(keyword);
 
     const onSearch = (e: FormEvent) => {

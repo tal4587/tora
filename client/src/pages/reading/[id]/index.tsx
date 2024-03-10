@@ -33,14 +33,19 @@ export const ReadingId = () => {
                 <div className="reading_single_image_card_container">
                     <ImageCard padding="2em" href={icon}/>
                 </div>
-                <p>{ isReadingLoading ? "Loading..." : readingData?.data.reading.name}</p>
-                <p>{ isReadingLoading ? "Loading..." : readingData?.data.reading.email}</p>
-                { isReadingError && <Link to="/reading/">Invalid Reading | Return Back</Link>}
+                <div className="reading_single_title_container">
+                    { isReadingLoading ? "Loading..." : (<>
+                        <h3>{readingData?.data.reading.name}</h3>
+                        <p>{readingData?.data.reading.email}</p>
+                        { isReadingError && <Link to="/reading/">Invalid Reading | Return Back</Link>}
+                        </>
+                    )}
+                </div>
             </div>
             <div className="reading_single_section right">
                 { isRandomInviteLoading ? "Loading..." : (
                     <div>
-                        <div>Book {randomInvite?.data.invite.book}</div>
+                        <h4>Book {randomInvite?.data.invite.book}</h4>
                         <div>Chapter {randomInvite?.data.invite.chapter}</div>
                         { readingData?.data.reading.readBy === "verse" && <div>Verse {randomInvite?.data.invite.verse}</div>}
                         { readingData?.data.reading.readBy === "chapter" ? <Chapter/> : <Verse/>}

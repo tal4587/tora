@@ -52,13 +52,13 @@ export const ReadingCreate = () => {
             </div>
             <div className="create_reading_section right">
                 <div className="create_reading_section_header">
-                    <Link to="/reading">Go Back</Link>
+                    <Link to="/reading">חזרה</Link>
                     <p>לפתיחת קריאה חדשה</p>
                 </div>
                 <form onSubmit={onSubmit} className="create_reading_form">
-                    <InputPrimary ref={name} type="text" placeholder="Enter Reading Name"/>
-                    <InputPrimaryTextbox ref={description} placeholder="Enter Reading Description"/>
-                    <InputPrimary ref={email} type="email" placeholder="Enter User Email Id"/>
+                    <InputPrimary ref={name} type="text" placeholder="שם החולה לו מוקדשת הקריאה"/>
+                    <InputPrimaryTextbox ref={description} placeholder="תיאור נוסף / ספר על המקרה"/>
+                    <InputPrimary ref={email} type="email" placeholder="אימייל שאליו ישלח לינק לשיתוף הקריאה"/>
                     <div className="create_reading_radio_container">
                         <InputPrimaryRadio checked={!verseToggle} onChange={() => setVerseToggle(false)} label="קריאה לפי פרקים"/>
                         <InputPrimaryRadio checked={verseToggle} onChange={() => setVerseToggle(true)} label="קריאה לפי פסוקים"/>

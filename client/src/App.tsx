@@ -38,7 +38,7 @@ function App() {
           onSubmit={onSearch}
           icon={<SearchIcon/>}
           value={keyword} onChange={e => setKeyword(e.target.value)}
-          type="text" placeholder="Search or Enter Reading Id..."
+          type="text" placeholder="חיפוש / חפש שם קריאה קיימת"
         />
       </div>
     )
