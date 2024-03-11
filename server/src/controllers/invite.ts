@@ -1,6 +1,7 @@
 import { NextFunction, Request, Response } from "express";
 import Invite from "../models/invite";
 import { Types } from "mongoose"
+import Reading from "../models/reading";
 
 export const getAllInvites = async (req: Request, res: Response, next: NextFunction) => {
     try {
@@ -80,6 +81,9 @@ export const getInvite = async (req:Request, res: Response, next: NextFunction) 
 export const updateInvite = async (req:Request, res: Response, next: NextFunction) => {
     try {
         const invite = await Invite.findByIdAndUpdate(req.params.id, req.body, { new: true })
+        if(invite) {
+            await Reading.updateInviteCounts(invite.reading);
+        }
         if(!invite){
             return next({ status: 404, message: "Not Found", detail: "The provided invite Id does not exist"})
         }

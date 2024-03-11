@@ -1,20 +1,22 @@
-import { Link, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import { icon } from "../../../assets/images";
+import ButtonPrimary from "../../../components/button/primary";
 import ImageCard from "../../../components/card/imagecard";
+import ProgressBar from "../../../components/progressbar";
 import useGetRandomInviteFromReading from "../../../hooks/queries/useGetRandomInviteFromReading";
 import useGetReading from "../../../hooks/queries/useGetReading";
 import useFetchBook from "../../../hooks/utils/useFetchBook";
 import "./style.css";
-import ButtonPrimary from "../../../components/button/primary";
-import ProgressBar from "../../../components/progressbar";
+import useEditInviteStatus from "../../../hooks/mutations/useEditInviteStatus";
 
 export const ReadingId = () => {
 
     const {id} = useParams();
     const { isLoading: isReadingLoading, isError: isReadingError, data: readingData } = useGetReading(id || "");
-    const { isLoading: isRandomInviteLoading, data: randomInvite} = useGetRandomInviteFromReading(id || "");
-    const { bookContent } = useFetchBook(randomInvite ? (randomInvite?.data.invite.book) : 0);
-    
+    const { isLoading: isRandomInviteLoading, data: randomInvite } = useGetRandomInviteFromReading(id || "");
+    const { bookContent } = useFetchBook(randomInvite ? (randomInvite?.data.invite.book) : 1);
+    const {mutate: editInviteStatus } = useEditInviteStatus(randomInvite?.data.invite._id || "");
+
     const Chapter = () => {
         if(randomInvite && bookContent.length > 0) {
             return <div>{(bookContent)[randomInvite.data.invite.chapter - 1].verses.map(verse => (
@@ -27,7 +29,12 @@ export const ReadingId = () => {
             return <div>{(bookContent)[randomInvite.data.invite.chapter - 1].verses[randomInvite.data.invite.verse - 1].verseText}</div> 
         }
     }
+    const navigate = useNavigate();
 
+    const markAsRead = () => {
+        editInviteStatus("read");
+        navigate("/reading")
+    }
 
     return (
         <div className="reading_single_body">
@@ -63,7 +70,7 @@ export const ReadingId = () => {
                             { readingData?.data.reading.readBy === "chapter" ? <Chapter/> : <Verse/>}
                         </div>
                         <div className="reading_single_bottom_buttons">
-                            <ButtonPrimary>Mark as Read</ButtonPrimary>
+                            <ButtonPrimary onClick={markAsRead}>Mark as Read</ButtonPrimary>
                             <ButtonPrimary>I want to read Another</ButtonPrimary>
                             <ButtonPrimary>Can't Read now will read later</ButtonPrimary>
                         </div>
