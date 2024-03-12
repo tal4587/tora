@@ -19,8 +19,8 @@ export const ReadingId = () => {
     const {id} = useParams();
     const { isLoading: isReadingLoading, isError: isReadingError, data: readingData } = useGetReading(id || "");
     const { isLoading: isRandomInviteLoading, data: randomInvite, refetch: getAnotherRandomInvite } = useGetRandomInviteFromReading(id || "");
-    const { bookContent } = useFetchBook(randomInvite ? (randomInvite?.data.invite.book) : 1);
-    const {mutate: editInviteStatus } = useEditInviteStatus(randomInvite?.data.invite._id || "");
+    const { bookContent } = useFetchBook(randomInvite && randomInvite.data.invite ? (randomInvite.data.invite.book) : 1);
+    const {mutate: editInviteStatus } = useEditInviteStatus(randomInvite && randomInvite.data.invite && randomInvite.data.invite._id || "");
 
     const Chapter = () => {
         if(randomInvite && bookContent.length > 0) {
@@ -30,7 +30,7 @@ export const ReadingId = () => {
         }
     }
     const Verse = () => {
-        if(randomInvite && randomInvite.data.invite.verse && bookContent.length > 0){
+        if(randomInvite && randomInvite.data.invite && randomInvite.data.invite.verse && bookContent.length > 0){
             return <div>{(bookContent)[randomInvite.data.invite.chapter - 1] && (bookContent)[randomInvite.data.invite.chapter - 1].verses[randomInvite.data.invite.verse - 1].verseText}</div> 
         }
     }
@@ -38,21 +38,18 @@ export const ReadingId = () => {
     const queryClient = useQueryClient()
     
     const markAsRead = () => {
-        console.log("Editing invite: ", randomInvite?.data.invite._id)
         editInviteStatus("read");
         queryClient.invalidateQueries({ queryKey: ['reading-random-invite', readingData?.data.reading._id] })
         navigate("/reading")
     }
 
     const markAsReading = useCallback(() => {
-        console.log("Editing invite as reading: ", randomInvite?.data.invite._id)
         editInviteStatus("reading");
-    }, [editInviteStatus, randomInvite?.data.invite._id])
+    }, [editInviteStatus])
 
     const markAsUnread = useCallback(() => {
-        console.log("Editing invite as unread: ", randomInvite?.data.invite._id)
         editInviteStatus("reading");
-    }, [editInviteStatus, randomInvite?.data.invite._id])
+    }, [editInviteStatus])
 
     useEffect(() => {
         markAsReading();
@@ -109,8 +106,8 @@ export const ReadingId = () => {
             <div className="reading_single_section right">
                 { isRandomInviteLoading ? "Loading..." : (
                     <div>
-                        <h4>{randomInvite && bookNumberToName.get(randomInvite?.data.invite.book)}</h4>
-                        <div>Chapter {randomInvite?.data.invite.chapter}</div>
+                        <h4>{randomInvite && randomInvite.data.invite ? bookNumberToName.get(randomInvite.data.invite.book): "Invalid Reading..."}</h4>
+                        <div>Chapter {randomInvite && randomInvite.data.invite && randomInvite?.data.invite.chapter}</div>
                         { readingData?.data.reading.readBy === "verse" && <div>Verse {randomInvite?.data.invite.verse}</div>}
                         <div className="reading_single_text">
                             { readingData?.data.reading.readBy === "chapter" ? <Chapter/> : <Verse/>}
