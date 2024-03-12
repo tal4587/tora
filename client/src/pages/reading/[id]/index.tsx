@@ -8,12 +8,14 @@ import useGetReading from "../../../hooks/queries/useGetReading";
 import useFetchBook from "../../../hooks/utils/useFetchBook";
 import "./style.css";
 import useEditInviteStatus from "../../../hooks/mutations/useEditInviteStatus";
+import { useQueryClient } from "@tanstack/react-query";
+import { useCallback, useEffect } from "react";
 
 export const ReadingId = () => {
 
     const {id} = useParams();
     const { isLoading: isReadingLoading, isError: isReadingError, data: readingData } = useGetReading(id || "");
-    const { isLoading: isRandomInviteLoading, data: randomInvite } = useGetRandomInviteFromReading(id || "");
+    const { isLoading: isRandomInviteLoading, data: randomInvite, refetch: getAnotherRandomInvite } = useGetRandomInviteFromReading(id || "");
     const { bookContent } = useFetchBook(randomInvite ? (randomInvite?.data.invite.book) : 1);
     const {mutate: editInviteStatus } = useEditInviteStatus(randomInvite?.data.invite._id || "");
 
@@ -30,9 +32,39 @@ export const ReadingId = () => {
         }
     }
     const navigate = useNavigate();
-
+    const queryClient = useQueryClient()
+    
     const markAsRead = () => {
+        console.log("Editing invite: ", randomInvite?.data.invite._id)
         editInviteStatus("read");
+        queryClient.invalidateQueries({ queryKey: ['reading-random-invite', readingData?.data.reading._id] })
+        navigate("/reading")
+    }
+
+    const markAsReading = useCallback(() => {
+        console.log("Editing invite as reading: ", randomInvite?.data.invite._id)
+        editInviteStatus("reading");
+    }, [editInviteStatus, randomInvite?.data.invite._id])
+
+    const markAsUnread = useCallback(() => {
+        console.log("Editing invite as unread: ", randomInvite?.data.invite._id)
+        editInviteStatus("reading");
+    }, [editInviteStatus, randomInvite?.data.invite._id])
+
+    useEffect(() => {
+        markAsReading();
+    }, [markAsReading])
+
+    const readAnother = () => {
+        markAsUnread();
+        queryClient.invalidateQueries({ queryKey: ['reading-random-invite', readingData?.data.reading._id] })
+        getAnotherRandomInvite();
+        markAsReading();
+    }
+
+    const cantReadNow = () => {
+        markAsUnread();
+        queryClient.invalidateQueries({ queryKey: ['reading-random-invite', readingData?.data.reading._id] })
         navigate("/reading")
     }
 
@@ -71,8 +103,8 @@ export const ReadingId = () => {
                         </div>
                         <div className="reading_single_bottom_buttons">
                             <ButtonPrimary onClick={markAsRead}>Mark as Read</ButtonPrimary>
-                            <ButtonPrimary>I want to read Another</ButtonPrimary>
-                            <ButtonPrimary>Can't Read now will read later</ButtonPrimary>
+                            <ButtonPrimary onClick={readAnother}>I want to read Another</ButtonPrimary>
+                            <ButtonPrimary onClick={cantReadNow}>Can't Read now will read later</ButtonPrimary>
                         </div>
                     </div>
                 )}

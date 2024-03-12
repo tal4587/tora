@@ -1,23 +1,38 @@
-.center_navigation_body {
+.center_navigation_desktop {
     width: 25em;
     max-width: 90vw;
-    transform: translateX(20%);
+    transform: translateX(-20%);
 }
 
-.right_navigation_logo img {
+.left_navigation_logo img {
     height: 1.5em;
 }
 
-.left_navigation_body {
+.center_navigation_mobile {
     display: none;
 }
 
+.right_navigation_body {
+    position: relative;
+}
+
+.right_navigation_orglogo_home {
+    width: 7em;
+    position: absolute;
+    top: -2em;
+    right: 0;
+}
+
+.right_navigation_orglogo_other {
+    width: 3em;
+}
+
 @media only screen and (max-width: 1080px) {
-    .center_navigation_body {
+    .center_navigation_desktop {
         display: none;
     }
 
-    .left_navigation_body {
+    .center_navigation_mobile {
         display: block;
     }
 }

@@ -64,7 +64,7 @@ const ReadingSearch = () => {
             <div className="reading_search_middle">
                 {isReadingsLoading && <div>Loading...</div>}
                 {!isReadingsLoading && !isReadingsError && readings?.data.reading.map((r) => (
-                    <Link to={`/reading/${r._id}`}>
+                    <Link key={r._id} to={`/reading/${r._id}`}>
                         <ReadingCard name={r.name} email={r.email} count={r.readCount} total={r.readCount + r.readingCount + r.unreadCount}/> 
                     </Link>
                 ))}

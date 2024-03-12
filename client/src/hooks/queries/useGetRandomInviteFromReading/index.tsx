@@ -11,7 +11,7 @@ const useGetRandomInviteFromReading = (reading_id: string) => {
         },
         refetchInterval: false,
         refetchOnWindowFocus: false,
-        refetchOnMount: false,
+        refetchOnMount: false
     })
 }
 

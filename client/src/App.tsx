@@ -1,7 +1,7 @@
 import { Link, Outlet, useLocation, useNavigate } from 'react-router-dom';
 import './App.css';
 import Navigation from './components/navigation';
-import { logo, logowhite } from './assets/images';
+import { logo, logowhite, orglogoblue, orglogowhite } from './assets/images';
 import InputPrimaryForm from './components/input/primaryform';
 import SearchIcon from './assets/svgs/Search';
 import { FormEvent, useState } from 'react';
@@ -11,11 +11,9 @@ function App() {
 
   const LeftNav = () => {
     return (
-      <div className='left_navigation_body'>
-        <Link to="/reading/search">
-          <SearchIcon/>
-        </Link>
-      </div>
+      <Link to="/"><div className="left_navigation_logo">
+        <img src={location.pathname === "/reading" ? logowhite : logo} alt="thoraread.online" />
+      </div></Link>
     )
   }
   
@@ -33,31 +31,44 @@ function App() {
 
     return (
       <div className='center_navigation_body'>
-        <InputPrimaryForm
-          variant='glass'
-          onSubmit={onSearch}
-          icon={<SearchIcon/>}
-          value={keyword} onChange={e => setKeyword(e.target.value)}
-          type="text" placeholder="חיפוש / חפש שם קריאה קיימת"
-        />
+        <div className="center_navigation_desktop">
+          <InputPrimaryForm
+            variant='glass'
+            onSubmit={onSearch}
+            icon={<SearchIcon/>}
+            value={keyword} onChange={e => setKeyword(e.target.value)}
+            type="text" placeholder="חיפוש / חפש שם קריאה קיימת"
+          />
+        </div>
+        <div className="center_navigation_mobile">
+          <Link to="/reading/search">
+            <SearchIcon/>
+          </Link>
+        </div>
       </div>
     )
   }
 
   const RightNav = () => {
     return (
-      <Link to="/"><div className="right_navigation_logo">
-        <img src={location.pathname === "/reading" ? logowhite : logo} alt="thoraread.online" />
-      </div></Link>
+      <div className='right_navigation_body'>
+        <div className='right_navigation_image_container'>
+          { location.pathname === "/reading" ? (
+            <img className="right_navigation_orglogo_home" src={orglogowhite} alt="organization" />
+          ): (
+            <img className='right_navigation_orglogo_other' src={orglogoblue} alt="organization" />
+          )}
+        </div>
+      </div>
     )
   }
 
   return (
     <div>
       <Navigation
-        left={location.pathname === "/reading" ? <LeftNav/>: undefined}
+        left={<LeftNav/>}
         center={location.pathname === "/reading" ? <CenterNav />: undefined}
-        right={<RightNav />}
+        right={<RightNav/>}
       />
       <Outlet />
     </div>
