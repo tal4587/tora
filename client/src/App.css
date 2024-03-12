@@ -4,6 +4,11 @@
     transform: translateX(-20%);
 }
 
+.left_navigation_logo {
+    display: flex;
+    gap: 1em;
+}
+
 .left_navigation_logo img {
     height: 1.5em;
 }

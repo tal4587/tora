@@ -1,5 +1,4 @@
 .reading_single_body {
-    display: grid;
     padding-top: 4em;
     width: 1080px;
     max-width: 90vw;
@@ -17,12 +16,6 @@
     height: 12em;
 }
 
-.reading_single_section.right{
-    overflow-y: scroll;
-    height: calc(100vh - 4em);
-    text-align: right;
-    padding-inline: 1em;
-}
 
 .reading_single_bottom_buttons {
     display: flex;
@@ -33,14 +26,21 @@
 
 @media only screen and (min-width: 1080px) {
     .reading_single_body {
+        display: grid;
         grid-template-columns: 1fr 3fr; 
     }
-
+    
+    .reading_single_section.right{
+        overflow-y: scroll;
+        height: calc(100vh - 4em);
+        text-align: right;
+        padding-inline: 1em;
+    }
 }
 
 
 @media only screen and (max-width: 1080px) {
-    .reading_single_section.left {
+    .reading_single_image_card_container {
         display: none;
     }
 }

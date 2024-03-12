@@ -13,6 +13,11 @@ function App() {
     return (
       <Link to="/"><div className="left_navigation_logo">
         <img src={location.pathname === "/reading" ? logowhite : logo} alt="thoraread.online" />
+        <div className="center_navigation_mobile">
+          <Link to="/reading/search">
+            <SearchIcon/>
+          </Link>
+        </div>
       </div></Link>
     )
   }
@@ -40,11 +45,6 @@ function App() {
             type="text" placeholder="חיפוש / חפש שם קריאה קיימת"
           />
         </div>
-        <div className="center_navigation_mobile">
-          <Link to="/reading/search">
-            <SearchIcon/>
-          </Link>
-        </div>
       </div>
     )
   }
@@ -69,6 +69,7 @@ function App() {
         left={<LeftNav/>}
         center={location.pathname === "/reading" ? <CenterNav />: undefined}
         right={<RightNav/>}
+        solid={ location.pathname !== "/reading"}
       />
       <Outlet />
     </div>

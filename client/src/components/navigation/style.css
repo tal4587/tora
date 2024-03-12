@@ -7,6 +7,10 @@
     z-index: 99;
 }
 
+.navigation_body.solid {
+    background: var(--background-primary);
+}
+
 .navigation_wrapper {
     max-width: 90vw;
     width: 1080px;

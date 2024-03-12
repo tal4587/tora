@@ -1,15 +1,16 @@
+import { useQueryClient } from "@tanstack/react-query";
+import { useCallback, useEffect } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { icon } from "../../../assets/images";
 import ButtonPrimary from "../../../components/button/primary";
 import ImageCard from "../../../components/card/imagecard";
 import ProgressBar from "../../../components/progressbar";
+import { bookNumberToName } from "../../../constants/books";
+import useEditInviteStatus from "../../../hooks/mutations/useEditInviteStatus";
 import useGetRandomInviteFromReading from "../../../hooks/queries/useGetRandomInviteFromReading";
 import useGetReading from "../../../hooks/queries/useGetReading";
 import useFetchBook from "../../../hooks/utils/useFetchBook";
 import "./style.css";
-import useEditInviteStatus from "../../../hooks/mutations/useEditInviteStatus";
-import { useQueryClient } from "@tanstack/react-query";
-import { useCallback, useEffect } from "react";
 
 export const ReadingId = () => {
 
@@ -21,14 +22,14 @@ export const ReadingId = () => {
 
     const Chapter = () => {
         if(randomInvite && bookContent.length > 0) {
-            return <div>{(bookContent)[randomInvite.data.invite.chapter - 1].verses.map(verse => (
+            return <div>{(bookContent)[randomInvite.data.invite.chapter - 1] && (bookContent)[randomInvite.data.invite.chapter - 1].verses.map(verse => (
                 <div key={verse.verseCount}>{verse.verseCount}. {verse.verseText}</div>
             ))}</div>
         }
     }
     const Verse = () => {
         if(randomInvite && randomInvite.data.invite.verse && bookContent.length > 0){
-            return <div>{(bookContent)[randomInvite.data.invite.chapter - 1].verses[randomInvite.data.invite.verse - 1].verseText}</div> 
+            return <div>{(bookContent)[randomInvite.data.invite.chapter - 1] && (bookContent)[randomInvite.data.invite.chapter - 1].verses[randomInvite.data.invite.verse - 1].verseText}</div> 
         }
     }
     const navigate = useNavigate();
@@ -60,6 +61,7 @@ export const ReadingId = () => {
         queryClient.invalidateQueries({ queryKey: ['reading-random-invite', readingData?.data.reading._id] })
         getAnotherRandomInvite();
         markAsReading();
+        console.log(randomInvite && (bookContent)[randomInvite.data.invite.chapter - 1]);
     }
 
     const cantReadNow = () => {
@@ -95,7 +97,7 @@ export const ReadingId = () => {
             <div className="reading_single_section right">
                 { isRandomInviteLoading ? "Loading..." : (
                     <div>
-                        <h4>Book {randomInvite?.data.invite.book}</h4>
+                        <h4>{randomInvite && bookNumberToName.get(randomInvite?.data.invite.book)}</h4>
                         <div>Chapter {randomInvite?.data.invite.chapter}</div>
                         { readingData?.data.reading.readBy === "verse" && <div>Verse {randomInvite?.data.invite.verse}</div>}
                         <div className="reading_single_text">
