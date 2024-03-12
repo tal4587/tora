@@ -1,5 +1,5 @@
 import { useQueryClient } from "@tanstack/react-query";
-import { useCallback, useEffect } from "react";
+import { FormEvent, useCallback, useEffect } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { icon } from "../../../assets/images";
 import ButtonPrimary from "../../../components/button/primary";
@@ -11,6 +11,8 @@ import useGetRandomInviteFromReading from "../../../hooks/queries/useGetRandomIn
 import useGetReading from "../../../hooks/queries/useGetReading";
 import useFetchBook from "../../../hooks/utils/useFetchBook";
 import "./style.css";
+import InputPrimaryForm from "../../../components/input/primaryform";
+import CopyIcon from "../../../assets/svgs/Copy";
 
 export const ReadingId = () => {
 
@@ -70,6 +72,13 @@ export const ReadingId = () => {
         navigate("/reading")
     }
 
+    const copyLinkToClipboard = (e: FormEvent) => {
+        e.preventDefault();
+        if(readingData) {
+            navigator.clipboard.writeText(`https://thoraread.online/reading/${readingData.data.reading._id}`)
+        }
+    }
+
     return (
         <div className="reading_single_body">
             <div className="reading_single_section left">
@@ -77,7 +86,7 @@ export const ReadingId = () => {
                     <ImageCard padding="2em" href={icon}/>
                 </div>
                 {isReadingLoading ? "Loading" : !readingData? "Loading...":(
-                    <div>
+                    <div className="reading_single_section_left_container">
                         <div className="reading_single_title_container">
                             <h3>{readingData.data.reading.name}</h3>
                             <p>{readingData.data.reading.email}</p>
@@ -90,6 +99,9 @@ export const ReadingId = () => {
                             <ProgressBar percentage={(readingData.data.reading.readingCount * 100)/ (readingData.data.reading.readCount + readingData.data.reading.unreadCount + readingData.data.reading.readingCount)}/>
                             {readingData.data.reading.unreadCount} Unread
                             <ProgressBar percentage={(readingData.data.reading.unreadCount * 100)/ (readingData.data.reading.readCount + readingData.data.reading.unreadCount + readingData.data.reading.readingCount)}/>
+                        </div>
+                        <div className="reading_single_copylink">
+                            <InputPrimaryForm onSubmit={copyLinkToClipboard} icon={<CopyIcon/>} value={`https://thoraread.online/reading/${readingData.data.reading._id}`}/>
                         </div>
                     </div>
                 ) }
