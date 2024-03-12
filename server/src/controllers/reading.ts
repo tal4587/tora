@@ -74,8 +74,17 @@ export const createReading = async (req: Request, res: Response, next: NextFunct
         const mailOptions = {
             from: process.env.MAIL_EMAIL,
             to: reading.email,
-            subject: "Tora Test Email",
-            text: "This is a test email sent using Nodemailer.",
+            subject: "הלינק שלך לקריאת התורה הגיע!",
+            text: `היי,
+            הלינק שיצרת לקריאת התורה הוא :
+            https://thoraread.online/reading/${reading._id}
+            שיתוף המצווה חשובה מאוד, ותוכל לשתף את כל הקוראים שלך בוואטצאפ, SMS, אימייל וכל מדיה אחרת.
+            
+            מוזמן לתמוך באתר ובעמותה בלינק :
+            www.dhn10.co.il
+            
+            בברכה,
+            הנהלת האתר`,
         };
 
         transporter.sendMail(mailOptions);
