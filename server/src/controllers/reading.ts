@@ -2,6 +2,7 @@ import { NextFunction, Request, Response } from "express";
 import books from "../constants/books";
 import Invite from "../models/invite";
 import Reading from "../models/reading";
+import nodemailer from "nodemailer";
 
 export const getAllReadings = async (req: Request, res: Response, next: NextFunction) => {
     try {
@@ -58,6 +59,26 @@ export const createReading = async (req: Request, res: Response, next: NextFunct
                 })
             });
         }
+
+        const transporter = nodemailer.createTransport({
+            service: "Gmail",
+            host: "smtp.gmail.com",
+            port: 465,
+            secure: true,
+            auth: {
+                user: process.env.MAIL_EMAIL,
+                pass: process.env.MAIL_PASS,
+            },
+        });
+
+        const mailOptions = {
+            from: process.env.MAIL_EMAIL,
+            to: reading.email,
+            subject: "Tora Test Email",
+            text: "This is a test email sent using Nodemailer.",
+        };
+
+        transporter.sendMail(mailOptions);
 
         await Invite.insertMany(invites);
 
