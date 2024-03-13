@@ -42,24 +42,38 @@ export const ReadingId = () => {
     const queryClient = useQueryClient()
     
     const markAsRead = () => {
-        editInviteStatus("read");
-        refetchReading();
+        console.log("Marking as read");
+        editInviteStatus("read", {
+            onSuccess: () => {
+                refetchReading();
+                queryClient.invalidateQueries({ queryKey: ['reading-random-invite', readingData?.data.reading._id] })
+            }
+        });
         setShowPopUp(true);
     }
 
     const markAsReading = useCallback(() => {
-        console.log("Marked as Reading...");
-        editInviteStatus("reading");
-        refetchReading();
+        console.log("Marking as reading");
+        editInviteStatus("reading", {
+            onSuccess: () => {
+                refetchReading();
+            }
+        });
     }, [editInviteStatus, refetchReading])
 
     const markAsUnread = useCallback(() => {
-        editInviteStatus("unread");
-        refetchReading();
+        console.log("Marking as unread");
+        editInviteStatus("unread", {
+            onSuccess: () => {
+                refetchReading();
+            }
+        });
     }, [editInviteStatus, refetchReading])
 
     useEffect(() => {
-        markAsReading();
+        if(randomInvite && randomInvite.data.invite){
+            markAsReading();
+        }
     }, [markAsReading, randomInvite])
 
     const readAnother = () => {
@@ -114,7 +128,7 @@ export const ReadingId = () => {
                 randomInvite && randomInvite.data.invite && 
                 <div className="reading_single_section right"> <div>
                     <h4>{bookNumberToName.get(randomInvite.data.invite.book)}</h4>
-                    <div>פרק {randomInvite?.data.invite.chapter}</div>
+                    <div>פרק {randomInvite.data.invite.chapter}</div>
                     {readingData?.data.reading.readBy === "verse" && <div>פסוק {randomInvite?.data.invite.verse}</div>}
                     <div className="reading_single_text">
                         {readingData?.data.reading.readBy === "chapter" ? <Chapter /> : <Verse />}
