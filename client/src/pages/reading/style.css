@@ -52,3 +52,8 @@
     font-weight: 600;
     color: var(--background-primary);
 }
+
+.reading_option_bottom_link a {
+    text-decoration: none;
+    color: var(--background-primary);
+}

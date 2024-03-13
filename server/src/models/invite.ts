@@ -22,10 +22,8 @@ const invite = new mongoose.Schema({
         enum: ["unread", "reading", "read"],
         default: "unread",
     },
-    createdAt: {
-        type: Date,
-        default: Date.now()
-    }
+}, {
+    timestamps: true
 });
 
 export default mongoose.model("Invite", invite);

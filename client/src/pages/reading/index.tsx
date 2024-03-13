@@ -1,11 +1,11 @@
 import { FormEvent, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { iconwhite } from "../../assets/images";
+import Left from "../../assets/svgs/Left";
 import ButtonLink from "../../components/button/link";
 import ImageCard from "../../components/card/imagecard";
 import InputPrimaryForm from "../../components/input/primaryform";
 import "./style.css";
-import Left from "../../assets/svgs/Left";
 
 export const Reading = () => {
 
@@ -43,6 +43,12 @@ export const Reading = () => {
                             type="text" placeholder="Enter Reading Id..."
                             disabled={readingLink.length === 0}
                         />
+                    </div>
+                    <div className="reading_option_bottom_link">
+                        <a href="https://www.tvip.co.il">
+                        ©כל הזכויות שמורות לעמותת דרך המלך נלך הרקם ע"ר  2024 | האתר נבנה על ידי חי ברשת 
+חי ברשת
+                        </a>
                     </div>
                 </div>
 

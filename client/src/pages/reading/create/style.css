@@ -6,14 +6,19 @@
     margin: 0 auto;
 }
 
-
-
 .create_reading_section_header {
     display: flex;
     padding-inline: 2em;
     justify-content: space-between;
     align-items: center;
     height: 3em;
+}
+
+.create_reading_section_description {
+    width: 30em;
+    max-width: 90vw;
+    margin: 0 auto;
+    margin-bottom: 1em;
 }
 
 .create_reading_image_card_container {

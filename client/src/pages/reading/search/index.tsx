@@ -63,11 +63,13 @@ const ReadingSearch = () => {
             </div>
             <div className="reading_search_middle">
                 {isReadingsLoading && <div>Loading...</div>}
-                {!isReadingsLoading && !isReadingsError && readings?.data.reading.map((r) => (
-                    <Link key={r._id} to={`/reading/${r._id}`}>
-                        <ReadingCard name={r.name} email={r.email} count={r.readCount} total={r.readCount + r.readingCount + r.unreadCount}/> 
-                    </Link>
-                ))}
+                {!isReadingsLoading && !isReadingsError && readings && (readings.data.reading.length === 0 ?
+                    <div>No readings Found</div> :
+                    readings.data.reading.map((r) => (
+                        <Link key={r._id} to={`/reading/${r._id}`}>
+                            <ReadingCard name={r.name} email={r.email} count={r.readCount} total={r.readCount + r.readingCount + r.unreadCount} />
+                        </Link>
+                    )))}
             </div>
             <div className="reading_search_bottom">
                 <ButtonPrimary onClick={prevPage} disabled={!page || !readings || Number.parseInt(page) === 1}>Previous</ButtonPrimary>

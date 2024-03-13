@@ -12,10 +12,6 @@ const reading = new mongoose.Schema({
     description: {
         type: String
     },
-    createdAt: {
-        type: Date,
-        default: Date.now()
-    },
     readBy: {
         type: String,
         enum: ["chapter", "verse"],
@@ -31,6 +27,7 @@ const reading = new mongoose.Schema({
         type: Number,
     }
 }, {
+    timestamps: true,
     statics: {
         updateInviteCounts: async function (readingId: Types.ObjectId) {
             const result = await this.aggregate([

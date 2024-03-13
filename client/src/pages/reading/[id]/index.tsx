@@ -17,13 +17,13 @@ import CopyIcon from "../../../assets/svgs/Copy";
 export const ReadingId = () => {
 
     const {id} = useParams();
-    const { isLoading: isReadingLoading, isError: isReadingError, data: readingData } = useGetReading(id || "");
-    const { isLoading: isRandomInviteLoading, data: randomInvite, refetch: getAnotherRandomInvite } = useGetRandomInviteFromReading(id || "");
+    const { isLoading: isReadingLoading, isError: isReadingError, data: readingData, refetch: refetchReading } = useGetReading(id || "");
+    const { isLoading: isRandomInviteLoading, isError: isRandomInviteError, data: randomInvite, refetch: getAnotherRandomInvite } = useGetRandomInviteFromReading(id || "");
     const { bookContent } = useFetchBook(randomInvite && randomInvite.data.invite ? (randomInvite.data.invite.book) : 1);
     const {mutate: editInviteStatus } = useEditInviteStatus(randomInvite && randomInvite.data.invite && randomInvite.data.invite._id || "");
 
     const Chapter = () => {
-        if(randomInvite && bookContent.length > 0) {
+        if(randomInvite && randomInvite.data.invite && bookContent.length > 0) {
             return <div>{(bookContent)[randomInvite.data.invite.chapter - 1] && (bookContent)[randomInvite.data.invite.chapter - 1].verses.map(verse => (
                 <div key={verse.verseCount}>{verse.verseCount}. {verse.verseText}</div>
             ))}</div>
@@ -40,16 +40,20 @@ export const ReadingId = () => {
     const markAsRead = () => {
         editInviteStatus("read");
         queryClient.invalidateQueries({ queryKey: ['reading-random-invite', readingData?.data.reading._id] })
-        navigate("/reading")
+        // navigate("/reading")
+        refetchReading();
     }
 
     const markAsReading = useCallback(() => {
+        console.log("Marked as Reading...");
         editInviteStatus("reading");
-    }, [editInviteStatus])
+        refetchReading();
+    }, [editInviteStatus, refetchReading])
 
     const markAsUnread = useCallback(() => {
         editInviteStatus("reading");
-    }, [editInviteStatus])
+        refetchReading();
+    }, [editInviteStatus, refetchReading])
 
     useEffect(() => {
         markAsReading();
@@ -60,7 +64,6 @@ export const ReadingId = () => {
         queryClient.invalidateQueries({ queryKey: ['reading-random-invite', readingData?.data.reading._id] })
         getAnotherRandomInvite();
         markAsReading();
-        console.log(randomInvite && (bookContent)[randomInvite.data.invite.chapter - 1]);
     }
 
     const cantReadNow = () => {
@@ -87,14 +90,13 @@ export const ReadingId = () => {
                         <div className="reading_single_title_container">
                             <h3>{readingData.data.reading.name}</h3>
                             <p>{readingData.data.reading.email}</p>
-                            {isReadingError && <Link to="/reading/">Invalid Reading | Return Back</Link>}
                         </div>
                         <div className="reading_single_progress">
-                            {readingData.data.reading.readCount} Read
+                            {readingData.data.reading.readCount} נקראו
                             <ProgressBar percentage={(readingData.data.reading.readCount * 100)/ (readingData.data.reading.readCount + readingData.data.reading.unreadCount + readingData.data.reading.readingCount)}/>
-                            {readingData.data.reading.readingCount} Reading
+                            {readingData.data.reading.readingCount} כרגע בקריאה
                             <ProgressBar percentage={(readingData.data.reading.readingCount * 100)/ (readingData.data.reading.readCount + readingData.data.reading.unreadCount + readingData.data.reading.readingCount)}/>
-                            {readingData.data.reading.unreadCount} Unread
+                            {readingData.data.reading.unreadCount} נשאר לקרוא
                             <ProgressBar percentage={(readingData.data.reading.unreadCount * 100)/ (readingData.data.reading.readCount + readingData.data.reading.unreadCount + readingData.data.reading.readingCount)}/>
                         </div>
                         <div className="reading_single_copylink">
@@ -103,23 +105,26 @@ export const ReadingId = () => {
                     </div>
                 ) }
             </div>
-            <div className="reading_single_section right">
-                { isRandomInviteLoading ? "Loading..." : (
-                    <div>
-                        <h4>{randomInvite && randomInvite.data.invite ? bookNumberToName.get(randomInvite.data.invite.book): "Invalid Reading..."}</h4>
-                        <div>Chapter {randomInvite && randomInvite.data.invite && randomInvite?.data.invite.chapter}</div>
-                        { readingData?.data.reading.readBy === "verse" && <div>Verse {randomInvite?.data.invite.verse}</div>}
-                        <div className="reading_single_text">
-                            { readingData?.data.reading.readBy === "chapter" ? <Chapter/> : <Verse/>}
-                        </div>
-                        <div className="reading_single_bottom_buttons">
-                            <ButtonPrimary onClick={markAsRead}>Mark as Read</ButtonPrimary>
-                            <ButtonPrimary onClick={readAnother}>I want to read Another</ButtonPrimary>
-                            <ButtonPrimary onClick={cantReadNow}>Can't Read now will read later</ButtonPrimary>
-                        </div>
+
+            {isRandomInviteLoading ? "Loading..." : (
+                randomInvite && randomInvite.data.invite && 
+                <div className="reading_single_section right"> <div>
+                    <h4>{bookNumberToName.get(randomInvite.data.invite.book)}</h4>
+                    <div>פרק {randomInvite?.data.invite.chapter}</div>
+                    {readingData?.data.reading.readBy === "verse" && <div>פסוק {randomInvite?.data.invite.verse}</div>}
+                    <div className="reading_single_text">
+                        {readingData?.data.reading.readBy === "chapter" ? <Chapter /> : <Verse />}
                     </div>
-                )}
-            </div>
+                    <div className="reading_single_bottom_buttons">
+                        <ButtonPrimary onClick={markAsRead}>קראתי את הפרק </ButtonPrimary>
+                        <ButtonPrimary onClick={readAnother}>קראתי ואני רוצה לקרוא פרק נוסף</ButtonPrimary>
+                        <ButtonPrimary onClick={cantReadNow}>לא יכול לקרוא עכשיו, אקרא מאוחר יותר</ButtonPrimary>
+                    </div>
+                </div></div>
+            )}
+
+            {isReadingError && <Link to="/reading/">Invalid Reading | Return Back</Link>}
+            { isRandomInviteError && "Error"}
         </div>
     )
 }
