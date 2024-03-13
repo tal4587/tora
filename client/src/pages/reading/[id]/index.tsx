@@ -2,8 +2,10 @@ import { useQueryClient } from "@tanstack/react-query";
 import { FormEvent, useCallback, useEffect } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { icon } from "../../../assets/images";
+import CopyIcon from "../../../assets/svgs/Copy";
 import ButtonPrimary from "../../../components/button/primary";
 import ImageCard from "../../../components/card/imagecard";
+import InputPrimaryForm from "../../../components/input/primaryform";
 import ProgressBar from "../../../components/progressbar";
 import { bookNumberToName } from "../../../constants/books";
 import useEditInviteStatus from "../../../hooks/mutations/useEditInviteStatus";
@@ -11,8 +13,6 @@ import useGetRandomInviteFromReading from "../../../hooks/queries/useGetRandomIn
 import useGetReading from "../../../hooks/queries/useGetReading";
 import useFetchBook from "../../../hooks/utils/useFetchBook";
 import "./style.css";
-import InputPrimaryForm from "../../../components/input/primaryform";
-import CopyIcon from "../../../assets/svgs/Copy";
 
 export const ReadingId = () => {
 
@@ -40,7 +40,6 @@ export const ReadingId = () => {
     const markAsRead = () => {
         editInviteStatus("read");
         queryClient.invalidateQueries({ queryKey: ['reading-random-invite', readingData?.data.reading._id] })
-        // navigate("/reading")
         refetchReading();
     }
 
@@ -51,13 +50,13 @@ export const ReadingId = () => {
     }, [editInviteStatus, refetchReading])
 
     const markAsUnread = useCallback(() => {
-        editInviteStatus("reading");
+        editInviteStatus("unread");
         refetchReading();
     }, [editInviteStatus, refetchReading])
 
     useEffect(() => {
         markAsReading();
-    }, [markAsReading])
+    }, [markAsReading, randomInvite])
 
     const readAnother = () => {
         markAsUnread();
@@ -124,7 +123,7 @@ export const ReadingId = () => {
             )}
 
             {isReadingError && <Link to="/reading/">Invalid Reading | Return Back</Link>}
-            { isRandomInviteError && "Error"}
+            { isRandomInviteError && "Error" }
         </div>
     )
 }
