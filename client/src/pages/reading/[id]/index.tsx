@@ -1,5 +1,5 @@
 import { useQueryClient } from "@tanstack/react-query";
-import { FormEvent, useCallback, useEffect } from "react";
+import { FormEvent, useCallback, useEffect, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { icon } from "../../../assets/images";
 import CopyIcon from "../../../assets/svgs/Copy";
@@ -13,6 +13,8 @@ import useGetRandomInviteFromReading from "../../../hooks/queries/useGetRandomIn
 import useGetReading from "../../../hooks/queries/useGetReading";
 import useFetchBook from "../../../hooks/utils/useFetchBook";
 import "./style.css";
+import PopUp from "../../../components/popup";
+import ButtonLink from "../../../components/button/link";
 
 export const ReadingId = () => {
 
@@ -21,6 +23,8 @@ export const ReadingId = () => {
     const { isLoading: isRandomInviteLoading, isError: isRandomInviteError, data: randomInvite, refetch: getAnotherRandomInvite } = useGetRandomInviteFromReading(id || "");
     const { bookContent } = useFetchBook(randomInvite && randomInvite.data.invite ? (randomInvite.data.invite.book) : 1);
     const {mutate: editInviteStatus } = useEditInviteStatus(randomInvite && randomInvite.data.invite && randomInvite.data.invite._id || "");
+
+    const [showPopUp, setShowPopUp] = useState<boolean>(false);
 
     const Chapter = () => {
         if(randomInvite && randomInvite.data.invite && bookContent.length > 0) {
@@ -39,8 +43,8 @@ export const ReadingId = () => {
     
     const markAsRead = () => {
         editInviteStatus("read");
-        queryClient.invalidateQueries({ queryKey: ['reading-random-invite', readingData?.data.reading._id] })
         refetchReading();
+        setShowPopUp(true);
     }
 
     const markAsReading = useCallback(() => {
@@ -79,6 +83,7 @@ export const ReadingId = () => {
     }
 
     return (
+        <> 
         <div className="reading_single_body">
             <div className="reading_single_section left">
                 <div className="reading_single_image_card_container">
@@ -99,7 +104,7 @@ export const ReadingId = () => {
                             <ProgressBar percentage={(readingData.data.reading.unreadCount * 100)/ (readingData.data.reading.readCount + readingData.data.reading.unreadCount + readingData.data.reading.readingCount)}/>
                         </div>
                         <div className="reading_single_copylink">
-                            <InputPrimaryForm onSubmit={copyLinkToClipboard} icon={<CopyIcon/>} value={`https://thoraread.online/reading/${readingData.data.reading._id}`}/>
+                            <InputPrimaryForm onSubmit={copyLinkToClipboard} icon={<CopyIcon/>} value={`https://thoraread.online/reading/${readingData.data.reading._id}`} readOnly={true}/>
                         </div>
                     </div>
                 ) }
@@ -125,5 +130,28 @@ export const ReadingId = () => {
             {isReadingError && <Link to="/reading/">Invalid Reading | Return Back</Link>}
             { isRandomInviteError && "Error" }
         </div>
+
+        <PopUp showPopUp={showPopUp} setShowPopUp={setShowPopUp}>
+            <div className="reading_single_popup_body">
+                <div>
+                בס"ד
+                </div>
+                <div>
+                תודה שהשתתפת בקריאה!!
+                מעשה טוב אחד - מכריע את הכף
+                "עשה מצוה אחת - הרי הכריע את עצמו והכריע את כל העולם כולו לכף זכות, וגרם להן תשועה והצלה"  רמב"ם, הלכות תשובה
+                </div>
+
+                <div>
+                תוכל להוסיף מעשה טוב ולקחת על עצמך תרומה לעמותת דרך המלך נלך העוזרת לאלפי משפחות בסלי מזון באופן שוטף ובחגי ישראל. (ניתן לתרום כל סכום)
+                </div>
+
+                <ButtonLink to="https://secure.cardcom.solutions/EA/EA5/8BqYEVjAgEGy6X0TOvSThg/Donation" >
+                    לתרומה
+                </ButtonLink>
+            </div>
+        </PopUp>
+
+        </>
     )
 }

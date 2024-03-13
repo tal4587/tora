@@ -10,14 +10,16 @@ type InputPrimaryFormProps = {
     onChange?: ChangeEventHandler<HTMLInputElement>,
     disabled?: boolean,
     variant?: "plain" | "glass",
+    readOnly?: boolean,
 }
 
 const InputPrimaryForm = ({ type = "text", placeholder, onSubmit,
-    value, onChange, disabled, icon, variant = "plain" }: InputPrimaryFormProps) => {
+    value, onChange, disabled, icon, variant = "plain", readOnly }: InputPrimaryFormProps) => {
     return (
         <form className={`input_primaryform_form_body ${variant}`} onSubmit={onSubmit}>
             { icon && <button className="input_primaryform_button" type="submit" disabled={disabled}>{icon}</button> }
             <input
+                readOnly={readOnly}
                 className="input_primaryform_main"
                 value={value} onChange={onChange}
                 type={type} placeholder={placeholder} />

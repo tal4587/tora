@@ -30,6 +30,13 @@
     padding-block: 1em;
 }
 
+.reading_single_popup_body {
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+    text-align: center;
+}
+
 @media only screen and (min-width: 1080px) {
     .reading_single_body {
         display: grid;

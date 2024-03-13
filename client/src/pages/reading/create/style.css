@@ -19,6 +19,16 @@
     max-width: 90vw;
     margin: 0 auto;
     margin-bottom: 1em;
+    text-align: center;
+}
+
+.create_reading_section_description_top {
+    text-decoration: underline;
+}
+
+.create_reading_section_description_bottom {
+    font-size: 1.1em;
+    font-weight: 700;
 }
 
 .create_reading_image_card_container {

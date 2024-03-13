@@ -56,8 +56,10 @@ export const ReadingCreate = () => {
                     <p>לפתיחת קריאה חדשה</p>
                 </div>
                 <div className="create_reading_section_description">
-                    <div>
+                    <div className="create_reading_section_description_top">
                     באתר זה תוכלו לפתוח קריאת ספר התורה לקריאה משותפת לרפואת יקיריכם.
+                    </div>
+                    <div className="create_reading_section_description_middle">
                     לאחר ה7.10.23 , יום שמחת התורה רבים מאיתנו לא חגגו את החג הקדוש, והאתר הוקם להפצת קריאת התורה בקהילות.
                     תוכלו לפתוח קריאה לפי פרקים או לפי פסוקים, לפי כמות האנשים איתם תרצו לשתף.
                     לאחר מילוי הפרטים ולחיצה על הכפתור תקבלו קישור במייל ועל המסך.
@@ -66,7 +68,7 @@ export const ReadingCreate = () => {
                     הפיצו את הקישור באמצעות המייל, ווטסאפ, פייסבוק וכדומה
                     כל אדם שיכנס לקישור זה, יקבל באופן אוטומטי פרק אחר או פסוק אחר בספר.
                     </div>
-                    <div>כך תושלם קריאת ספר התורה כולה.</div>
+                    <div className="create_reading_section_description_bottom">כך תושלם קריאת ספר התורה כולה.</div>
                 </div>
                 <form onSubmit={onSubmit} className="create_reading_form">
                     <InputPrimary ref={name} type="text" placeholder="שם החולה לו מוקדשת הקריאה"/>
