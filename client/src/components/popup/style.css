@@ -23,7 +23,7 @@
 
 .popup_close_button {
     position: absolute;
-    top: 1em;
+    top: 0.5em;
     right: 1em;
     cursor: pointer;
 }

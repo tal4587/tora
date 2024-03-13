@@ -37,6 +37,16 @@
     width: 30em;
     max-width: 80vw;
     text-align: center;
+    direction: rtl;
+}
+
+.reading_single_popup_top {
+    text-align: right;
+}
+
+.reading_single_pop_head {
+    font-weight: 700;
+    font-size: 1.1em;
 }
 
 @media only screen and (min-width: 1080px) {

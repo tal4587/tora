@@ -46,7 +46,6 @@ export const ReadingId = () => {
         editInviteStatus("read", {
             onSuccess: () => {
                 refetchReading();
-                queryClient.invalidateQueries({ queryKey: ['reading-random-invite', readingData?.data.reading._id] })
             }
         });
         setShowPopUp(true);
@@ -147,13 +146,22 @@ export const ReadingId = () => {
 
         <PopUp showPopUp={showPopUp} setShowPopUp={setShowPopUp}>
             <div className="reading_single_popup_body">
-                <div>
+                <div className="reading_single_popup_top">
                 בס"ד
                 </div>
-                <div>
+                <div className="reading_single_pop_head">
                 תודה שהשתתפת בקריאה!!
-                מעשה טוב אחד - מכריע את הכף
-                "עשה מצוה אחת - הרי הכריע את עצמו והכריע את כל העולם כולו לכף זכות, וגרם להן תשועה והצלה"  רמב"ם, הלכות תשובה
+                </div>
+                <div>
+                <div>
+                    מעשה טוב אחד - מכריע את הכף
+                </div>
+                <div>
+                מעשה טוב אחד - מכריע את הכף "עשה מצוה אחת - הרי הכריע את עצמו והכריע את כל העולם כולו לכף זכות, וגרם להן תשועה והצלה"
+                </div>
+                <div>
+                (רמב"ם, הלכות תשובה)
+                </div>
                 </div>
 
                 <div>
@@ -163,6 +171,9 @@ export const ReadingId = () => {
                 <ButtonLink to="https://secure.cardcom.solutions/EA/EA5/8BqYEVjAgEGy6X0TOvSThg/Donation" >
                     לתרומה
                 </ButtonLink>
+                <ButtonPrimary onClick={() => setShowPopUp(false)}>
+                    חזרה לקריאה
+                </ButtonPrimary>
             </div>
         </PopUp>
 

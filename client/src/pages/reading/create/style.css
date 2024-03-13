@@ -20,6 +20,7 @@
     margin: 0 auto;
     margin-bottom: 1em;
     text-align: center;
+    direction: rtl;
 }
 
 .create_reading_section_description_top {
