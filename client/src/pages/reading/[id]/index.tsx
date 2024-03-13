@@ -143,6 +143,12 @@ export const ReadingId = () => {
             {isReadingError && <Link to="/reading/">Invalid Reading | Return Back</Link>}
             { isRandomInviteError && "Error" }
         </div>
+        <div className="reading_single_bottom_link">
+            <a href="https://www.tvip.co.il">
+                ©כל הזכויות שמורות לעמותת דרך המלך נלך הרקם ע"ר  2024 | האתר נבנה על ידי חי ברשת
+                חי ברשת
+            </a>
+        </div>
 
         <PopUp showPopUp={showPopUp} setShowPopUp={setShowPopUp}>
             <div className="reading_single_popup_body">

@@ -52,6 +52,20 @@
     gap: 1em;
 }
 
+.create_reading_bottom_link {
+    text-align: right;
+    width: 30em;
+    margin: 1em auto;
+    max-width: 90vw;
+}
+
+.create_reading_bottom_link a {
+    text-decoration: none;
+    color: var(--foreground-primary);
+    direction: rtl;
+    font-size: 0.7em;
+}
+
 @media only screen and (min-width: 1080px) {
     .create_reading_body {
         grid-template-columns: 1fr 3fr; 

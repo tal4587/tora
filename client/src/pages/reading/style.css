@@ -18,6 +18,13 @@
     padding-top: 1em;
 }
 
+
+@media only screen and (max-width: 480px) {
+    .reading_option {
+        font-size: 0.8em;
+    }
+}
+
 .reading_home_icon {
     width: 10em;
     height: 10em;
@@ -55,8 +62,15 @@
     color: var(--background-primary);
 }
 
+.reading_option_bottom_link {
+    text-align: right;
+    max-width: 90vw;
+    margin: 0 auto;
+}
+
 .reading_option_bottom_link a {
     text-decoration: none;
     color: var(--background-primary);
     direction: rtl;
+    font-size: 0.7em;
 }

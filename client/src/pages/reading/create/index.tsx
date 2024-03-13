@@ -44,6 +44,7 @@ export const ReadingCreate = () => {
     }
     
     return (
+        <>
         <div className="create_reading_body">
             <div className="create_reading_section left">
                 <div className="create_reading_image_card_container">
@@ -83,5 +84,12 @@ export const ReadingCreate = () => {
                 </form>
             </div>
         </div>
+        <div className="create_reading_bottom_link">
+            <a href="https://www.tvip.co.il">
+                ©כל הזכויות שמורות לעמותת דרך המלך נלך הרקם ע"ר  2024 | האתר נבנה על ידי חי ברשת
+                חי ברשת
+            </a>
+        </div>
+        </>
     )
 }

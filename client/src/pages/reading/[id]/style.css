@@ -40,6 +40,14 @@
     direction: rtl;
 }
 
+.reading_single_section.right {
+    text-align: right;
+}
+
+.reading_single_text {
+    text-align: right;
+}
+
 .reading_single_popup_top {
     text-align: right;
 }
@@ -47,6 +55,21 @@
 .reading_single_pop_head {
     font-weight: 700;
     font-size: 1.1em;
+}
+
+.reading_single_bottom_link {
+    text-align: right;
+    width: 30em;
+    margin: 0 auto;
+    max-width: 90vw;
+    margin: 0 auto;
+}
+
+.reading_single_bottom_link a {
+    text-decoration: none;
+    color: var(--foreground-primary);
+    direction: rtl;
+    font-size: 0.7em;
 }
 
 @media only screen and (min-width: 1080px) {

@@ -11,14 +11,16 @@ function App() {
 
   const LeftNav = () => {
     return (
-      <Link to="/"><div className="left_navigation_logo">
-        <img src={location.pathname === "/reading" ? logowhite : logo} alt="thoraread.online" />
+      <div className="left_navigation_logo">
+        <Link to="/">
+          <img src={location.pathname === "/reading" ? logowhite : logo} alt="thoraread.online" />
+        </Link>
         <div className="center_navigation_mobile">
           <Link to="/reading/search">
             <SearchIcon/>
           </Link>
         </div>
-      </div></Link>
+      </div>
     )
   }
   
@@ -54,9 +56,9 @@ function App() {
       <div className='right_navigation_body'>
         <div className='right_navigation_image_container'>
           { location.pathname === "/reading" ? (
-            <img className="right_navigation_orglogo_home" src={orglogowhite} alt="organization" />
+            <Link to="/"><img className="right_navigation_orglogo_home" src={orglogowhite} alt="organization" /></Link>
           ): (
-            <img className='right_navigation_orglogo_other' src={orglogoblue} alt="organization" />
+            <Link to="/"><img className='right_navigation_orglogo_other' src={orglogoblue} alt="organization" /></Link>
           )}
         </div>
       </div>

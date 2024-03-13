@@ -76,6 +76,12 @@ const ReadingSearch = () => {
                 {readings?.data.page} of {readings?.data.pages}
                 <ButtonPrimary onClick={nextPage} disabled={!page || !readings || Number.parseInt(page) === readings.data.pages}>Next</ButtonPrimary>
             </div>
+            <div className="reading_search_bottom_link">
+                <a href="https://www.tvip.co.il">
+                    ©כל הזכויות שמורות לעמותת דרך המלך נלך הרקם ע"ר  2024 | האתר נבנה על ידי חי ברשת
+                    חי ברשת
+                </a>
+            </div>
         </div>
     ) 
 }

@@ -1,11 +1,11 @@
 import { FormEvent, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { iconwhite } from "../../assets/images";
-import Left from "../../assets/svgs/Left";
 import ButtonLink from "../../components/button/link";
 import ImageCard from "../../components/card/imagecard";
 import InputPrimaryForm from "../../components/input/primaryform";
 import "./style.css";
+import SearchIcon from "../../assets/svgs/Search";
 
 export const Reading = () => {
 
@@ -15,7 +15,7 @@ export const Reading = () => {
     const onOpenReading = (e: FormEvent) => {
         e.preventDefault();
         if(readingLink.length !== 0) {
-            navigate(`/reading/${readingLink}`);
+            navigate(`/reading/search?keyword=${readingLink}`);
         }
     }
 
@@ -35,15 +35,23 @@ export const Reading = () => {
                     <ButtonLink variant="filled-inverse" to="/reading/create">לפתיחת קריאה חדשה</ButtonLink>
                     <div className="reading_options_container">
                         <p className="reading_option_label">השתתפות בקריאה קיימת</p>
-                        <InputPrimaryForm
+                        {/* <InputPrimaryForm
                             variant='glass'
                             icon={<Left/>}
                             onSubmit={onOpenReading}
                             value={readingLink} onChange={e => setReadingLink(e.target.value)}
                             type="text" placeholder="Enter Reading Id..."
                             disabled={readingLink.length === 0}
+                        /> */}
+                        <InputPrimaryForm
+                            variant='glass'
+                            onSubmit={onOpenReading}
+                            icon={<SearchIcon />}
+                            value={readingLink} onChange={e => setReadingLink(e.target.value)}
+                            type="text" placeholder="חיפוש / חפש שם קריאה קיימת"
                         />
                     </div>
+
                     <div className="reading_option_bottom_link">
                         <a href="https://www.tvip.co.il">
                         ©כל הזכויות שמורות לעמותת דרך המלך נלך הרקם ע"ר  2024 | האתר נבנה על ידי חי ברשת 
