@@ -23,6 +23,10 @@
     .reading_option {
         font-size: 0.8em;
     }
+
+    .reading_option .button_link_main {
+        font-size: 1.2em;
+    }
 }
 
 .reading_home_icon {
@@ -37,6 +41,10 @@
     align-items: center;
     text-align: center;
     direction: rtl;
+}
+
+.reading_description h4 {
+    width: 100%;
 }
 
 .reading_description h2 {

@@ -15,11 +15,11 @@ function App() {
         <Link to="/">
           <img src={location.pathname === "/reading" ? logowhite : logo} alt="thoraread.online" />
         </Link>
-        <div className="center_navigation_mobile">
+        {/* <div className="center_navigation_mobile">
           <Link to="/reading/search">
             <SearchIcon/>
           </Link>
-        </div>
+        </div> */}
       </div>
     )
   }

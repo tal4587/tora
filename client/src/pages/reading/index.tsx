@@ -28,7 +28,7 @@ export const Reading = () => {
                         <ImageCard href={ iconwhite } variant="glass"/>
                     </div>
                     <div className="reading_description">
-                        <h4>לרפואת אריאל נסים בן זר</h4>
+                        <h4>אריאל ניסים בן זר הי"ו</h4>
                         <h2>קריאת התורה אונליין</h2>
                         <h3> לפי פרקים או פסוקים לרפואת חולי עם ישראל הפצועים, והחטופים!</h3>
                     </div>
@@ -55,7 +55,6 @@ export const Reading = () => {
                     <div className="reading_option_bottom_link">
                         <a href="https://www.tvip.co.il">
                         ©כל הזכויות שמורות לעמותת דרך המלך נלך הרקם ע"ר  2024 | האתר נבנה על ידי חי ברשת 
-חי ברשת
                         </a>
                     </div>
                 </div>
