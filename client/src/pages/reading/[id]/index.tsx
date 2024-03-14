@@ -105,6 +105,7 @@ export const ReadingId = () => {
                 {isReadingLoading ? "Loading" : !readingData? "Loading...":(
                     <div className="reading_single_section_left_container">
                         <div className="reading_single_title_container">
+                            <p>קריאה זו לרפואת</p>
                             <h3>{readingData.data.reading.name}</h3>
                             {/* <p>{readingData.data.reading.email}</p> */}
                         </div>
