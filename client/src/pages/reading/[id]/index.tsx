@@ -48,7 +48,6 @@ export const ReadingId = () => {
                 refetchReading();
             }
         });
-        setShowPopUp(true);
     }
 
     const markAsReading = useCallback(() => {
@@ -75,11 +74,15 @@ export const ReadingId = () => {
         }
     }, [markAsReading, randomInvite])
 
+    const readAndDonate = () => {
+        markAsRead();
+        setShowPopUp(true);
+    }
+
     const readAnother = () => {
-        markAsUnread();
+        markAsRead();
         queryClient.invalidateQueries({ queryKey: ['reading-random-invite', readingData?.data.reading._id] })
         getAnotherRandomInvite();
-        markAsReading();
     }
 
     const cantReadNow = () => {
@@ -134,7 +137,7 @@ export const ReadingId = () => {
                         {readingData?.data.reading.readBy === "chapter" ? <Chapter /> : <Verse />}
                     </div>
                     <div className="reading_single_bottom_buttons">
-                        <ButtonPrimary onClick={markAsRead}>קראתי את הפרק </ButtonPrimary>
+                        <ButtonPrimary onClick={readAndDonate}>קראתי את הפרק </ButtonPrimary>
                         <ButtonPrimary onClick={readAnother}>קראתי ואני רוצה לקרוא פרק נוסף</ButtonPrimary>
                         <ButtonPrimary onClick={cantReadNow}>לא יכול לקרוא עכשיו, אקרא מאוחר יותר</ButtonPrimary>
                     </div>
