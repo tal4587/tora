@@ -57,12 +57,12 @@
     width: 30em;
     margin: 1em auto;
     max-width: 90vw;
+    direction: rtl;
 }
 
 .create_reading_bottom_link a {
     text-decoration: none;
     color: var(--foreground-primary);
-    direction: rtl;
     font-size: 0.7em;
 }
 

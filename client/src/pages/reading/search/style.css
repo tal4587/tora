@@ -58,11 +58,11 @@
     text-align: right;
     max-width: 90vw;
     margin: 0 auto;
+    direction: rtl;
 }
 
 .reading_search_bottom_link a {
     text-decoration: none;
     color: var(--foreground-primary);
-    direction: rtl;
     font-size: 0.7em;
 }

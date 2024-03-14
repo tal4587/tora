@@ -74,10 +74,10 @@
     text-align: right;
     max-width: 90vw;
     margin: 0 auto;
+    direction: rtl;
 }
 
 .reading_option_bottom_link a {
     text-decoration: none;
     color: var(--background-primary);
-    direction: rtl;
 }
