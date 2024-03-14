@@ -1,7 +1,8 @@
 import { useEffect } from "react"
 import { useNavigate } from "react-router-dom"
-import ButtonLink from "../components/button/link"
 import "./style.css"
+import ImageCard from "../components/card/imagecard"
+import { icon } from "../assets/images"
 
 const Home = () => {
 
@@ -12,7 +13,9 @@ const Home = () => {
 
     return (
         <div className="home_body">
-            <ButtonLink to="/reading">Get Started</ButtonLink>
+            <div className="home_icon_wrapper">
+                <ImageCard padding="2em" href={icon} />
+            </div>
         </div>
     )
 }

@@ -106,7 +106,7 @@ export const ReadingId = () => {
                     <div className="reading_single_section_left_container">
                         <div className="reading_single_title_container">
                             <h3>{readingData.data.reading.name}</h3>
-                            <p>{readingData.data.reading.email}</p>
+                            {/* <p>{readingData.data.reading.email}</p> */}
                         </div>
                         <div className="reading_single_progress">
                             {readingData.data.reading.readCount} נקראו

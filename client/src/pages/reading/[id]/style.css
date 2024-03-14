@@ -80,7 +80,7 @@
     
     .reading_single_section.right{
         overflow-y: scroll;
-        height: calc(100vh - 4em);
+        height: calc(100vh - 6em);
         text-align: right;
         padding-inline: 1em;
     }
