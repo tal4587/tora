@@ -28,7 +28,7 @@ export const Reading = () => {
                         <ImageCard href={ iconwhite } variant="glass"/>
                     </div>
                     <div className="reading_description">
-                        <h4>אריאל ניסים בן זר הי"ו</h4>
+                        <h4>לרפואת אריאל ניסים בן זר הי"ו</h4>
                         <h2>קריאת התורה אונליין</h2>
                         <h3> לפי פרקים או פסוקים לרפואת חולי עם ישראל הפצועים, והחטופים!</h3>
                     </div>
