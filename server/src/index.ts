@@ -5,6 +5,7 @@ import connectDatabase from "./config/database";
 import readingRoute from "./routes/reading";
 import inviteRoute from "./routes/invite";
 import ErrorMiddleware from "./middlewares/error";
+import cronJob from "./config/cron";
 
 const PORT = process.env.PORT || 8080;
 const app = express();
@@ -13,6 +14,7 @@ app.use(express.json());
 app.use(cors({ credentials: true, origin: process.env.CORS_ORIGIN?.split(" ")}))
 
 connectDatabase();
+cronJob();
 
 app.get("/", (req, res) => {
     res.json({ success: true, message: "Hello World"});
