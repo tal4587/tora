@@ -72,7 +72,24 @@ export const ReadingId = () => {
         if(randomInvite && randomInvite.data.invite){
             markAsReading();
         }
-    }, [markAsReading, randomInvite])
+        return () => {
+            if (randomInvite && randomInvite.data.invite) {
+                markAsUnread();
+            }
+        }
+    }, [markAsReading, markAsUnread, randomInvite])
+
+    useEffect(() => {
+        const handleBeforeUnload = () => {
+            markAsUnread();
+        };
+
+        window.addEventListener('beforeunload', handleBeforeUnload);
+
+        return () => {
+            window.removeEventListener('beforeunload', handleBeforeUnload);
+        };
+    }, [markAsUnread]);
 
     const readAndDonate = () => {
         markAsRead();
