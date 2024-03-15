@@ -162,6 +162,11 @@ export const ReadingId = () => {
             )}
 
             {isReadingError && <Link to="/reading/">Invalid Reading | Return Back</Link>}
+            { !(randomInvite && randomInvite.data.invite) && (
+                <div className="reading_single_section right">
+                    { readingData && readingData.data.reading.unreadCount === 0 && "All Readings Completed!!"}
+                </div>
+            )}
             { isRandomInviteError && "Error" }
         </div>
         <div className="reading_single_bottom_link">
