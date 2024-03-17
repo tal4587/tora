@@ -17,6 +17,9 @@ const reading = new mongoose.Schema({
         enum: ["chapter", "verse"],
         required: true
     },
+    motive: {
+      type: String
+    },
     readCount: {
         type: Number,
     },

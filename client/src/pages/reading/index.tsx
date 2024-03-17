@@ -6,10 +6,12 @@ import ImageCard from "../../components/card/imagecard";
 import InputPrimaryForm from "../../components/input/primaryform";
 import "./style.css";
 import SearchIcon from "../../assets/svgs/Search";
+import useGetMetaData from "../../hooks/queries/useGetMetaData";
 
 export const Reading = () => {
 
     const [readingLink, setReadingLink] = useState<string>("");
+    const { isLoading: isMetaDataLoading, data: metaData } = useGetMetaData();
 
     const navigate = useNavigate();
     const onOpenReading = (e: FormEvent) => {
@@ -51,6 +53,29 @@ export const Reading = () => {
                             type="text" placeholder="חיפוש / חפש שם קריאה קיימת"
                         />
                     </div>
+
+                    {isMetaDataLoading ? "Loading..." : (
+                        metaData && (
+                            <div className="reading_meta_data_body">
+                                <div className="reading_meta_data_column">
+                                    <p>מספר הקריאות שאנשים כרגע קוראים בהם</p>
+                                    <p>{metaData.data.readingCount}</p>
+                                </div>
+                                <div className="reading_meta_data_column">
+                                    <p>כמות הפרקים של התורה שנקראו עד כה</p>
+                                    <p>{metaData.data.ChapterCount}</p>
+                                </div>
+                                <div className="reading_meta_data_column">
+                                    <p>כמות הפסוקים של התורה שנקראו עד כמה</p>
+                                    <p>{metaData.data.VerseCount}</p>
+                                </div>
+                                <div className="reading_meta_data_column">
+                                    <p>כמות האנשים שהשתתפו בקריאות בתורה עד כה</p>
+                                    <p>{metaData.data.invitesCount}</p>
+                                </div>
+                            </div>
+                        )
+                    )}
 
                     <div className="reading_option_bottom_link">
                         <a href="https://www.tvip.co.il">

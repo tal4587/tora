@@ -75,16 +75,16 @@ export const createReading = async (req: Request, res: Response, next: NextFunct
             from: process.env.MAIL_EMAIL,
             to: reading.email,
             subject: "הלינק שלך לקריאת התורה הגיע!",
-            text: `היי,
+            html: `<div dir="rtl">היי,
             הלינק שיצרת לקריאת התורה הוא :
-            https://thoraread.online/reading/${reading._id}
+            <a href="https://thoraread.online/reading/${reading._id}">https://thoraread.online/reading/${reading._id}</a>
             שיתוף המצווה חשובה מאוד, ותוכל לשתף את כל הקוראים שלך בוואטצאפ, SMS, אימייל וכל מדיה אחרת.
             
             מוזמן לתמוך באתר ובעמותה בלינק :
-            www.dhn10.co.il
+            <a href="www.dh10.com">www.dhn10.com</a>
             
             בברכה,
-            הנהלת האתר`,
+            הנהלת האתר</div>`,
         };
 
         transporter.sendMail(mailOptions);

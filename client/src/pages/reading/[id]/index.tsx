@@ -1,11 +1,13 @@
 import { useQueryClient } from "@tanstack/react-query";
 import { FormEvent, useCallback, useEffect, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
-import { icon } from "../../../assets/images";
+import { candle } from "../../../assets/images";
 import CopyIcon from "../../../assets/svgs/Copy";
+import ButtonLink from "../../../components/button/link";
 import ButtonPrimary from "../../../components/button/primary";
 import ImageCard from "../../../components/card/imagecard";
 import InputPrimaryForm from "../../../components/input/primaryform";
+import PopUp from "../../../components/popup";
 import ProgressBar from "../../../components/progressbar";
 import { bookNumberToName } from "../../../constants/books";
 import useEditInviteStatus from "../../../hooks/mutations/useEditInviteStatus";
@@ -13,8 +15,6 @@ import useGetRandomInviteFromReading from "../../../hooks/queries/useGetRandomIn
 import useGetReading from "../../../hooks/queries/useGetReading";
 import useFetchBook from "../../../hooks/utils/useFetchBook";
 import "./style.css";
-import PopUp from "../../../components/popup";
-import ButtonLink from "../../../components/button/link";
 
 export const ReadingId = () => {
 
@@ -120,14 +120,14 @@ export const ReadingId = () => {
         <div className="reading_single_body">
             <div className="reading_single_section left">
                 <div className="reading_single_image_card_container">
-                    <ImageCard padding="2em" href={icon}/>
+                    <ImageCard padding="0" href={candle}/>
                 </div>
                 {isReadingLoading ? "Loading" : !readingData? "Loading...":(
                     <div className="reading_single_section_left_container">
                         <div className="reading_single_title_container">
-                            <p>קריאה זו לרפואת</p>
+                            <p>{readingData.data.reading.motive}</p>
                             <h3>{readingData.data.reading.name}</h3>
-                            {/* <p>{readingData.data.reading.email}</p> */}
+                            { readingData.data.reading.description && <p>{readingData.data.reading.description}</p> }
                         </div>
                         <div className="reading_single_progress">
                             {readingData.data.reading.readCount} נקראו

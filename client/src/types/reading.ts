@@ -1,7 +1,9 @@
 interface Reading {
     _id: string,
+    motive: string,
     name: string,
     email: string,
+    description: string,
     createdAt: string
     readBy: "verse" | "chapter",
     readCount: number,
@@ -24,6 +26,7 @@ export interface ReadingsData {
 }
 
 export interface ReadingBody {
+    motive?: string,
     name?: string,
     email?: string,
     description?: string,

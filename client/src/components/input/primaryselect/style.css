@@ -1,0 +1,7 @@
+.input_primary_select_body {
+    padding: 0.3em 1em;
+    border-radius: 5px;
+    background: var(--background-secondary-alpha);
+    box-shadow: var(--primary-box-shadow);
+    border: 2px solid var(--foreground-primary);
+}

@@ -4,6 +4,7 @@ import "dotenv/config"
 import connectDatabase from "./config/database";
 import readingRoute from "./routes/reading";
 import inviteRoute from "./routes/invite";
+import metaRoute from "./routes/meta";
 import ErrorMiddleware from "./middlewares/error";
 import cronJob from "./config/cron";
 
@@ -22,6 +23,7 @@ app.get("/", (req, res) => {
 
 app.use("/reading", readingRoute);
 app.use("/invite", inviteRoute);
+app.use("/meta", metaRoute)
 
 app.use(ErrorMiddleware)
 

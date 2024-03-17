@@ -9,10 +9,12 @@ import InputPrimaryTextbox from "../../../components/input/primarytextbox";
 import useCreateNewReading from "../../../hooks/mutations/useCreateNewReading";
 import { ReadingBody } from "../../../types/reading";
 import "./style.css";
+import InputPrimarySelect from "../../../components/input/primaryselect";
 
 export const ReadingCreate = () => {
 
     const { mutate, data, isError, isPending } = useCreateNewReading();
+    const motive = useRef<HTMLSelectElement>(null);
     const name = useRef<HTMLInputElement>(null);
     const description = useRef<HTMLTextAreaElement>(null);
     const email = useRef<HTMLInputElement>(null);
@@ -30,6 +32,9 @@ export const ReadingCreate = () => {
         }
         if(description.current && description.current.value.length !== 0) {
             body = {...body, description: description.current.value}
+        }
+        if(motive.current && motive.current.value.length !== 0) {
+            body = {...body, motive: motive.current.value}
         }
         if(verseToggle) {
             body = {...body, readBy: "verse"}
@@ -72,6 +77,13 @@ export const ReadingCreate = () => {
                     <div className="create_reading_section_description_bottom">כך תושלם קריאת ספר התורה כולה.</div>
                 </div>
                 <form onSubmit={onSubmit} className="create_reading_form">
+                    <InputPrimarySelect ref={motive} options={[
+                        "לרפואת",
+                        "לעילוי נשמת",
+                        "לזיווג",
+                        "לפרנסה",
+                        "לשלום בית",
+                    ]}/>
                     <InputPrimary ref={name} type="text" placeholder="שם החולה לו מוקדשת הקריאה"/>
                     <InputPrimaryTextbox ref={description} placeholder="תיאור נוסף / ספר על המקרה"/>
                     <InputPrimary ref={email} type="email" placeholder="אימייל שאליו ישלח לינק לשיתוף הקריאה"/>
