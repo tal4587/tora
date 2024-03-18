@@ -58,12 +58,12 @@
     margin: 1em auto;
     max-width: 90vw;
     direction: rtl;
+    color: var(--foreground-primary);
+    font-size: 0.7em;
 }
 
 .create_reading_bottom_link a {
-    text-decoration: none;
     color: var(--foreground-primary);
-    font-size: 0.7em;
 }
 
 @media only screen and (min-width: 1080px) {

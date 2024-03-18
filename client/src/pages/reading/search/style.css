@@ -59,10 +59,10 @@
     max-width: 90vw;
     margin: 0 auto;
     direction: rtl;
+    color: var(--foreground-primary);
+    font-size: 0.7em;
 }
 
 .reading_search_bottom_link a {
-    text-decoration: none;
     color: var(--foreground-primary);
-    font-size: 0.7em;
 }

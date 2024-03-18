@@ -66,12 +66,12 @@
     max-width: 90vw;
     margin: 0 auto;
     direction: rtl;
+    font-size: 0.7em;
+    color: var(--foreground-primary);
 }
 
 .reading_single_bottom_link a {
-    text-decoration: none;
     color: var(--foreground-primary);
-    font-size: 0.7em;
 }
 
 @media only screen and (min-width: 1080px) {
@@ -91,6 +91,7 @@
 
 @media only screen and (max-width: 1080px) {
     .reading_single_image_card_container {
-        display: none;
+        width: 10em;
+        height: 10em;
     }
 }

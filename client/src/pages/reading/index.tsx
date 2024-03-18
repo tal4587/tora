@@ -78,8 +78,12 @@ export const Reading = () => {
                     )}
 
                     <div className="reading_option_bottom_link">
+                        <div>
+                        Ⓒ
+                        כל הזכויות שמורות לעמותת דרך המלך נלך בית עזיזה הרקם ע"ר |
+                        </div>
                         <a href="https://www.tvip.co.il">
-                        ©כל הזכויות שמורות לעמותת דרך המלך נלך הרקם ע"ר  2024 | האתר נבנה על ידי חי ברשת 
+                            <strong>האתר נבנה בהתנדבות - חי ברשת</strong>
                         </a>
                     </div>
                 </div>

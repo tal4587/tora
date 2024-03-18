@@ -88,9 +88,9 @@
     max-width: 90vw;
     margin: 0 auto;
     direction: rtl;
+    color: var(--background-primary);
 }
 
 .reading_option_bottom_link a {
-    text-decoration: none;
     color: var(--background-primary);
 }
