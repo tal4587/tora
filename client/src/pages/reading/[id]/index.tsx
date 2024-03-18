@@ -34,7 +34,7 @@ export const ReadingId = () => {
         }
     }
     const Verse = () => {
-        if(randomInvite && randomInvite.data.invite && randomInvite.data.invite.verse && bookContent.length > 0){
+        if(randomInvite && randomInvite.data.invite && randomInvite.data.invite.verse && bookContent.length > 0 && (bookContent)[randomInvite.data.invite.chapter - 1] && (bookContent)[randomInvite.data.invite.chapter - 1].verses[randomInvite.data.invite.verse - 1]){
             return <div>{(bookContent)[randomInvite.data.invite.chapter - 1] && (bookContent)[randomInvite.data.invite.chapter - 1].verses[randomInvite.data.invite.verse - 1].verseText}</div> 
         }
     }
