@@ -58,20 +58,20 @@ export const Reading = () => {
                         metaData && (
                             <div className="reading_meta_data_body">
                                 <div className="reading_meta_data_column">
-                                    <p>מספר הקריאות שאנשים כרגע קוראים בהם</p>
                                     <p>{metaData.data.readingCount}</p>
+                                    <p>מספר הקריאות שאנשים כרגע קוראים בהם</p>
                                 </div>
                                 <div className="reading_meta_data_column">
-                                    <p>כמות הפרקים של התורה שנקראו עד כה</p>
                                     <p>{metaData.data.ChapterCount}</p>
+                                    <p>כמות הפרקים של התורה שנקראו עד כה</p>
                                 </div>
                                 <div className="reading_meta_data_column">
-                                    <p>כמות הפסוקים של התורה שנקראו עד כמה</p>
                                     <p>{metaData.data.VerseCount}</p>
+                                    <p>כמות הפסוקים של התורה שנקראו עד כמה</p>
                                 </div>
                                 <div className="reading_meta_data_column">
-                                    <p>כמות האנשים שהשתתפו בקריאות בתורה עד כה</p>
                                     <p>{metaData.data.invitesCount}</p>
+                                    <p>כמות האנשים שהשתתפו בקריאות בתורה עד כה</p>
                                 </div>
                             </div>
                         )
